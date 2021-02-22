@@ -18,9 +18,9 @@ public class MainController {
         return "chart";
     }
 
-    @GetMapping("/breadcrump")
-    public String getBreadCrump(){
-        return "breadcrump";
+    @GetMapping("/breadcrumb")
+    public String getBreadCrumb(){
+        return "breadcrumb";
     }
 
 

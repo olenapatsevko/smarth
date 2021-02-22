@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/welcome").permitAll()
+                    .antMatchers("/", "/breadcrumb").permitAll()
                     .antMatchers("/registration").permitAll()
                     .antMatchers("/personal-cabinet").hasAnyAuthority("USER")
                     .antMatchers("/USER/**").hasAuthority("USER")
