@@ -17,4 +17,11 @@ public class MainController {
     public String getChart(){
         return "chart";
     }
+
+    @GetMapping("/breadcrumb")
+    public String getBreadCrumb(){
+        return "breadcrumb";
+    }
+
+
 }
