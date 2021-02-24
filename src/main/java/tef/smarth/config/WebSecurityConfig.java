@@ -30,27 +30,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                    .antMatchers("/", "/breadcrumb").permitAll()
-                    .antMatchers("/registration").permitAll()
-                    .antMatchers("/personal-cabinet").hasAnyAuthority("USER")
-                    .antMatchers("/USER/**").hasAuthority("USER")
-                    .anyRequest()
-                    .authenticated()
-                .and()
-                    .csrf().disable()
-                    .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/personal-cabinet", true)
-                    .permitAll()
-                .and()
-                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
-                    .invalidateHttpSession(true)
-                .and()
-                    .exceptionHandling()
-                    .accessDeniedPage("/error/403");
+//        http
+//                .authorizeRequests()
+//                    .antMatchers("/", "/breadcrumb","/chart").permitAll()
+//                    .antMatchers("/registration").permitAll()
+//                    .antMatchers("/personal-cabinet").hasAnyAuthority("USER")
+//                    .antMatchers("/USER/**").hasAuthority("USER")
+//                    .anyRequest()
+//                    .authenticated()
+//                .and()
+//                    .csrf().disable()
+//                    .formLogin()
+//                    .loginPage("/login")
+//                    .defaultSuccessUrl("/personal-cabinet", true)
+//                    .permitAll()
+//                .and()
+//                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                    .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
+//                    .invalidateHttpSession(true)
+//                .and()
+//                    .exceptionHandling()
+//                    .accessDeniedPage("/error/403");
     }
 
     @Bean
