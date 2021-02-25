@@ -22,7 +22,7 @@ public class MainController {
 
     @GetMapping("/login")
     public String getLoginPage(Model model){
-        return "singup";
+        return "login";
     }
 
 }
