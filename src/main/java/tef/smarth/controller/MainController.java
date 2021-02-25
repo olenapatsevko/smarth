@@ -8,29 +8,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-//    @GetMapping({"/","/main"})
-//    public  String getMain(Model model){
-//        return "index";
-//    }
-//
-//    @GetMapping("/chart")
-//    public String getChart(){
-//        return "chart";
-//    }
-//
-//    @GetMapping("/breadcrumb")
-//    public String getBreadCrumb(){
-//        return "breadcrumb";
-//    }
+    @GetMapping({"/","/main", "/welcome"})
+    public  String getMain(Model model){
+        return "index";
+    }
+
 
 
     @GetMapping("/registration")
     public String getRegistrationPage(Model model) {
         return "registration";
     }
+
     @GetMapping("/login")
     public String getLoginPage(Model model){
-        return "login";
+        return "singup";
     }
 
 }

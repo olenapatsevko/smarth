@@ -19,56 +19,67 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    @Qualifier("userDetailsServiceImpl")
-    private UserDetailsService userDetailsService;
+//    @Autowired
+//    @Qualifier("userDetailsServiceImpl")
+//    private UserDetailsService userDetailsService;
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Autowired
+//    private CustomSuccessHandler customSuccessHandler;
+
+//    @Bean
+//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                    .antMatchers("/", "/breadcrumb","/chart").permitAll()
-//                    .antMatchers("/registration").permitAll()
-//                    .antMatchers("/personal-cabinet").hasAnyAuthority("USER")
-//                    .antMatchers("/USER/**").hasAuthority("USER")
-//                    .anyRequest()
-//                    .authenticated()
+        http.httpBasic()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/login", "/welcome","/registration").permitAll()
+                .antMatchers("/registration").permitAll()
+             //   .antMatchers("/user/**").hasAnyAuthority("ADMIN", "USER")
+             //   .antMatchers("/admin/**").hasAuthority("ADMIN")
+//                .anyRequest()
+//                .authenticated()
 //                .and()
-//                    .csrf().disable()
-//                    .formLogin()
-//                    .loginPage("/login")
-//                    .defaultSuccessUrl("/personal-cabinet", true)
-//                    .permitAll()
+//                .csrf().disable()
+//                .formLogin()
+  //              .loginPage("/login")
+//                .successHandler(customSuccessHandler)
+//                .defaultSuccessUrl("/success-login", true)
+ //               .permitAll()
 //                .and()
-//                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                    .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
-//                    .invalidateHttpSession(true)
-//                .and()
-//                    .exceptionHandling()
-//                    .accessDeniedPage("/error/403");
+//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessUrl("/").deleteCookies("JSESSIONID")
+//                .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
+   //             .invalidateHttpSession(true)
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/error/403");
     }
 
-    @Bean
-    public AuthenticationManager customAuthenticationManager() throws Exception {
-        return authenticationManager();
-    }
+//    @Bean
+//    public AuthenticationManager customAuthenticationManager() throws Exception {
+//        return authenticationManager();
+//    }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-
-    }
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+//    }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/webjars/**");
+                .antMatchers("/resources/**",
+                        "/css/**",
+                        "/img/**",
+                        "/icon/**",
+                        "/js/**",
+                        "/fonts/**",
+                        "/webjars/**");
     }
 
 }
