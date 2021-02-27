@@ -69,6 +69,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Record> records;
 
+
+    @Column(name = "calculations")
+    @OneToMany(mappedBy = "user")
+    private Set<Calculations> calculations;
     @Transient
     private String passwordConfirm;
 
