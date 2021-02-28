@@ -72,7 +72,7 @@ public class User {
 
     @Column(name = "calculations")
     @OneToMany(mappedBy = "user")
-    private Set<Calculations> calculations;
+    private Set<Calculation> calculations;
     @Transient
     private String passwordConfirm;
 
