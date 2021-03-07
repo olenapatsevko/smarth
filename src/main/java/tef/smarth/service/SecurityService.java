@@ -11,4 +11,6 @@ public interface SecurityService {
     void autoLoginAfterReg(String username, String password);
 
     Set<RoleEntity> getLoggedUserRoles();
+
+    void login(String username, String password);
 }

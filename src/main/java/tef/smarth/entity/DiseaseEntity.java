@@ -29,5 +29,5 @@ public class DiseaseEntity {
     private String name;
 
     @ManyToMany(mappedBy = "diseases")
-    private Set<UserEntity> userEntities;
+    private Set<UserEntity> users;
 }

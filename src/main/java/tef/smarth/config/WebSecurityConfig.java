@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/welcome").permitAll()
                 .antMatchers("/registration").permitAll()
-                .antMatchers("/personal-cabinet").hasAnyAuthority("CLIENT")
+                .antMatchers("/personal-cabinet").permitAll()
                 .antMatchers("/client/**").hasAuthority("CLIENT")
                 .anyRequest()
                 .authenticated()
@@ -74,6 +74,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/icon/**",
                         "/js/**",
                         "/fonts/**",
-                        "/webjars/**");
+                        "/webjars/**",
+                        "/assets/**",
+                        "/dist/**");
     }
 }

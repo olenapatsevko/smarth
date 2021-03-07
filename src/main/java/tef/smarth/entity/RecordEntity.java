@@ -17,7 +17,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "persons")
+@Table(name = "records")
 public class RecordEntity {
 
     @Id
@@ -33,5 +33,5 @@ public class RecordEntity {
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
-    private UserEntity userEntity;
+    private UserEntity user;
 }

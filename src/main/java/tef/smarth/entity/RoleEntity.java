@@ -24,10 +24,10 @@ public class RoleEntity {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "persons_has_roles",
+    @JoinTable(name = "users_has_roles",
             joinColumns = @JoinColumn(name = "id_role"),
-            inverseJoinColumns = @JoinColumn(name = "id_person"))
-    private Set<UserEntity> userEntities = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "id_user"))
+    private Set<UserEntity> users = new HashSet<>();
 
     public RoleEntity() {
     }

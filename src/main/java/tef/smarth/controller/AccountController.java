@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import tef.smarth.entity.UserEntity;
+import tef.smarth.model.UserDto;
 import tef.smarth.service.SecurityService;
 import tef.smarth.service.UserService;
 import tef.smarth.utils.UserValidator;
@@ -35,7 +36,7 @@ public class AccountController {
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new UserEntity());
-        return "common/registration";
+        return "registration";
     }
 
     @PostMapping("/registration")
@@ -45,7 +46,7 @@ public class AccountController {
 
         if (bindingResult.hasErrors()) {
             logger.info("reg. form had errors. redirecting");
-            return "common/registration";
+            return "registration";
         }
 
         userService.registerUser(userForm);
@@ -56,16 +57,27 @@ public class AccountController {
     }
 
     @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
-        return "common/login";
+    public String loginPage(Model model) {
+        model.addAttribute("userDto", new UserDto());
+        return "login";
     }
 
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute UserDto userDto, Model model) {
+//        if (error != null)
+//            model.addAttribute("error", "Your username and password is invalid.");
+//
+//        if (logout != null)
+//            model.addAttribute("message", "You have been logged out successfully.");
+        securityService.login(userDto.getUsername(), userDto.getPassword());
+        return "redirect:/registration";
+    }
+
+    @GetMapping("/personal-cabinet")
+    public String personalCabinet() {
+        return "personal-cabinet";
+    }
 
 
 }

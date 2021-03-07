@@ -7,6 +7,7 @@ import lombok.ToString;
 import tef.smarth.entity.enums.BloodGroup;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "persons")
+@Table(name = "users")
 public class UserEntity {
 
     @Id
@@ -42,7 +43,7 @@ public class UserEntity {
     private boolean isMan;
 
     @Column(name = "age")
-    private int age;
+    private Date birthday;
 
     @Column(name = "weight")
     private int weight;
@@ -68,7 +69,7 @@ public class UserEntity {
 
     @Column(name = "records")
     @OneToMany(mappedBy = "user")
-    private Set<RecordEntity> recordEntities;
+    private Set<RecordEntity> records;
 
 
     @Column(name = "calculations")
@@ -78,8 +79,8 @@ public class UserEntity {
     private String passwordConfirm;
 
     @ManyToMany
-    @JoinTable(name = "persons_has_roles",
-            joinColumns = @JoinColumn(name = "id_person"),
+    @JoinTable(name = "users_has_roles",
+            joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_role"))
     private Set<RoleEntity> roles = new HashSet<>();
 

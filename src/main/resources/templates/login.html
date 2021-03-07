@@ -25,10 +25,11 @@
         </div>
 
         <!-- Login Form -->
-        <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+        <form method="post" th:action="@{/login}" th:object="${userDto}">
+            <input type="text" id="username" class="fadeIn second" th:field="*{username}" name="username" placeholder="username">
+            <input type="text" id="password" class="fadeIn third" th:field="*{password}" name="login" placeholder="password">
             <input type="submit" class="fadeIn fourth" value="Log In">
+            <input type="reset" value="Reset" />
         </form>
 
         <!-- Remind Passowrd -->
