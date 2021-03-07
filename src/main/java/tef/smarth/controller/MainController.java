@@ -6,32 +6,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import tef.smarth.controller.api.CareApi;
-import tef.smarth.controller.api.HealthApi;
+import tef.smarth.controller.api.PressureApi;
 import tef.smarth.controller.api.SugarApi;
+import tef.smarth.service.UserDetailsServiceImpl;
+import tef.smarth.service.UserService;
 
 @Controller
 @Data
 public class MainController {
 
     private CareApi careApi;
-    private HealthApi healthApi;
+    private PressureApi pressureApi;
     private SugarApi sugarApi;
 
+    private UserService userService;
+    private UserDetailsServiceImpl userDetailsService;
 
 
 
-    @GetMapping({"/","/main", "/welcome"})
-    public  String getMain(Model model){
-        return "index";
-    }
-
-
-
-    @GetMapping("/registration")
-    public String getRegistrationPage(Model model) {
-        return "registration";
-    }
-
+//    @GetMapping({"/","/main", "/welcome"})
+//    public  String getMain(Model model){
+//        return "index";
+//    }
+//
+//
+//
+//    @GetMapping("/registration")
+//    public String getRegistrationPage(Model model) {
+//        return "registration";
+//    }
+//
     @GetMapping("/login")
     public String getLoginPage(Model model){
         return "login";

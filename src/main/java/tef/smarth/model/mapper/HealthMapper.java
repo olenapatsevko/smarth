@@ -1,11 +1,11 @@
 package tef.smarth.model.mapper;
 
-import tef.smarth.model.api.entities.HealthEntity;
+import tef.smarth.model.api.entities.Pressure;
 import tef.smarth.model.api.request.HealthRequest;
 
-public class HealthMapper implements Mapper<HealthEntity, HealthRequest>{
+public class HealthMapper implements Mapper<Pressure, HealthRequest>{
     @Override
-    public HealthEntity map(HealthRequest healthRequest) {
+    public Pressure map(HealthRequest healthRequest) {
         return null;
     }
 }

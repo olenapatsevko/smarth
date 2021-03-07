@@ -1,10 +1,15 @@
 package tef.smarth.controller.api;
 
-import tef.smarth.model.api.entities.CareEntity;
+import lombok.Data;
+import tef.smarth.model.api.entities.CarbonFootPrint;
+import tef.smarth.service.CarbonFootprintService;
 
-public class CareApi implements Api<CareEntity>{
+@Data
+public class CareApi implements Api<CarbonFootPrint>{
+
+    private CarbonFootprintService carbonFootPrint;
     @Override
-    public CareEntity processRequest() {
+    public CarbonFootPrint processRequest() {
         return null;
     }
 }

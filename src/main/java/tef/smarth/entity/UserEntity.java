@@ -7,6 +7,7 @@ import lombok.ToString;
 import tef.smarth.entity.enums.BloodGroup;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -18,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @ToString
 @Entity
 @Table(name = "persons")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -63,11 +64,11 @@ public class User {
             joinColumns = {@JoinColumn(name = "id_user")},
             inverseJoinColumns = {@JoinColumn(name = "id_disease")}
     )
-    private Set<Disease> diseases;
+    private Set<DiseaseEntity> diseases;
 
     @Column(name = "records")
     @OneToMany(mappedBy = "user")
-    private Set<Record> records;
+    private Set<RecordEntity> recordEntities;
 
 
     @Column(name = "calculations")
@@ -75,5 +76,12 @@ public class User {
     private Set<Calculation> calculations;
     @Transient
     private String passwordConfirm;
+
+    @ManyToMany
+    @JoinTable(name = "persons_has_roles",
+            joinColumns = @JoinColumn(name = "id_person"),
+            inverseJoinColumns = @JoinColumn(name = "id_role"))
+    private Set<RoleEntity> roles = new HashSet<>();
+
 
 }

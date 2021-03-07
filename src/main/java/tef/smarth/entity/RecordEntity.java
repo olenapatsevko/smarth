@@ -18,7 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @ToString
 @Entity
 @Table(name = "persons")
-public class Record {
+public class RecordEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -33,5 +33,5 @@ public class Record {
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
-    private User user;
+    private UserEntity userEntity;
 }

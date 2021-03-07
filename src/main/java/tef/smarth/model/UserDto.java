@@ -3,8 +3,8 @@ package tef.smarth.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import tef.smarth.entity.Calculation;
-import tef.smarth.entity.Disease;
-import tef.smarth.entity.Record;
+import tef.smarth.entity.DiseaseEntity;
+import tef.smarth.entity.RecordEntity;
 import tef.smarth.entity.enums.BloodGroup;
 
 import java.util.Set;
@@ -24,8 +24,8 @@ public class UserDto {
     private int height;
     private String email;
     private BloodGroup bloodGroup;
-    private Set<Disease> diseases;
-    private Set<Record> records;
+    private Set<DiseaseEntity> diseases;
+    private Set<RecordEntity> recordEntities;
     private Set<Calculation> calculations;
     private String passwordConfirm;
 }

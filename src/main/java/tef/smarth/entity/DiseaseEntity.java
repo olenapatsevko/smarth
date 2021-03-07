@@ -18,7 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @ToString
 @Entity
 @Table(name = "diseases")
-public class Disease {
+public class DiseaseEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -29,5 +29,5 @@ public class Disease {
     private String name;
 
     @ManyToMany(mappedBy = "diseases")
-    private Set<User> users;
+    private Set<UserEntity> userEntities;
 }
