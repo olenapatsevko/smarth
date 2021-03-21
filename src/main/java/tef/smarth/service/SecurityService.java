@@ -6,6 +6,7 @@ import tef.smarth.entity.RoleEntity;
 import java.util.Set;
 
 public interface SecurityService {
+
     String findLoggedInUsername();
 
     void autoLoginAfterReg(String username, String password);

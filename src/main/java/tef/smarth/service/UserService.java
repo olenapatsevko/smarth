@@ -15,4 +15,5 @@ public interface UserService {
 
     void registerUser(UserEntity user);
 
+    UserEntity obtainCurrentPrincipleUser();
 }

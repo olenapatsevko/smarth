@@ -1,10 +1,13 @@
-package tef.smarth.service;
+package tef.smarth.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.repository.UserRepository;
+import tef.smarth.service.UserService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,6 +58,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userEntity);
     }
 
+    public UserEntity obtainCurrentPrincipleUser() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userRepository.findByUsername(userDetails.getUsername());
+    }
 
 }
 

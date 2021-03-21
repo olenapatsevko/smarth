@@ -1,4 +1,4 @@
-package tef.smarth.service;
+package tef.smarth.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import tef.smarth.entity.RoleEntity;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.repository.UserRepository;
+import tef.smarth.service.SecurityService;
 
 import java.util.Set;
 

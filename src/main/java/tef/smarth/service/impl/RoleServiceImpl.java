@@ -1,4 +1,4 @@
-package tef.smarth.service;
+package tef.smarth.service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import tef.smarth.entity.RoleEntity;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.repository.RoleRepository;
+import tef.smarth.service.RoleService;
 
 
 import java.util.List;
