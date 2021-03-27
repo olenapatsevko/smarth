@@ -1,9 +1,6 @@
 package tef.smarth.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import tef.smarth.entity.enums.BloodGroup;
 
 import javax.persistence.*;
@@ -18,6 +15,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Setter
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 public class UserEntity {

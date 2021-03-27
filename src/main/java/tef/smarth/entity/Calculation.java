@@ -1,10 +1,7 @@
 package tef.smarth.entity;
 
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -16,6 +13,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 @EqualsAndHashCode
 @ToString
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "calculations")
 public class Calculation {
 

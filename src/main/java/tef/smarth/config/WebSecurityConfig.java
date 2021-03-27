@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/welcome").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/personal-cabinet").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/client/**").hasAuthority("CLIENT")
                 .anyRequest()
                 .authenticated()

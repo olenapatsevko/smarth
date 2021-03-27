@@ -1,10 +1,10 @@
 package tef.smarth.entity;
 
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import tef.smarth.entity.enums.BloodGroup;
+import tef.smarth.entity.enums.ParameterType;
+import tef.smarth.entity.enums.RecordType;
 
 import javax.persistence.*;
 
@@ -17,6 +17,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 @EqualsAndHashCode
 @ToString
 @Entity
+@AllArgsConstructor
+@Builder
+@NoArgsConstructor
 @Table(name = "records")
 public class RecordEntity {
 
@@ -27,6 +30,20 @@ public class RecordEntity {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "value")
+    private String value;
+
+    @Column(name="record_type")
+    @Enumerated(EnumType.STRING)
+    private RecordType recordType;
+
+    @Column(name="parameter_type")
+    @Enumerated(EnumType.STRING)
+    private ParameterType parameterType;
+
+    @Column(name = "measurement")
+    private String measurement;
 
     @Column(name = "date")
     private  Date date;
