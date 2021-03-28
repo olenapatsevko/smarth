@@ -1,19 +1,13 @@
 package tef.smarth.api.bmi;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import tef.smarth.api.bmi.request.BMIParameter;
 import tef.smarth.api.bmi.request.BMIRequest;
 import tef.smarth.api.bmi.response.BMIResponse;
 import tef.smarth.entity.RecordEntity;
@@ -21,9 +15,7 @@ import tef.smarth.entity.UserEntity;
 import tef.smarth.entity.enums.ParameterType;
 import tef.smarth.entity.enums.RecordType;
 import tef.smarth.repository.RecordRepository;
-import tef.smarth.service.UserService;
 
-import javax.xml.ws.WebServiceClient;
 import java.sql.Date;
 
 @Data
