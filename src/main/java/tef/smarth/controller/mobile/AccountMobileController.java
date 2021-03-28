@@ -7,10 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import tef.smarth.controller.AccountController;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.model.UserDto;
@@ -20,10 +17,11 @@ import tef.smarth.utils.UserValidator;
 
 import java.net.http.HttpResponse;
 
-@Controller("/api")
+@Controller
+@RequestMapping("/api")
 public class AccountMobileController {
 
-    private final Logger logger = LoggerFactory.getLogger(AccountController.class);
+    private final Logger logger = LoggerFactory.getLogger(AccountMobileController.class);
 
     @Autowired
     private UserValidator userValidator;

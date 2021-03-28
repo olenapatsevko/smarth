@@ -2,12 +2,10 @@ package tef.smarth.entity;
 
 
 import lombok.*;
-import tef.smarth.entity.enums.BloodGroup;
 import tef.smarth.entity.enums.ParameterType;
 import tef.smarth.entity.enums.RecordType;
 
 import javax.persistence.*;
-
 import java.sql.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -15,10 +13,10 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @EqualsAndHashCode
-@ToString
 @Entity
 @AllArgsConstructor
 @Builder
+@ToString
 @NoArgsConstructor
 @Table(name = "records")
 public class RecordEntity {
@@ -51,4 +49,9 @@ public class RecordEntity {
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
     private UserEntity user;
+
+
+    public String getSummary() {
+        return '\n' +  name + ": " + value + measurement + " on " + date  ;
+    }
 }

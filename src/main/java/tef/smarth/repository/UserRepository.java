@@ -7,4 +7,5 @@ import tef.smarth.entity.UserEntity;
 @Repository
 public interface UserRepository extends CrudRepository<UserEntity,Integer> {
     UserEntity findByUsername(String username);
+    UserEntity findByEmail(String email);
 }
