@@ -42,6 +42,10 @@ public class BMIClient {
 
         ResponseEntity<BMIResponse> response
                 = restTemplate.postForEntity(URL, requestBody, BMIResponse.class);
+        return getResponse(userEntity, response);
+    }
+
+    private BMIResponse getResponse(UserEntity userEntity, ResponseEntity<BMIResponse> response) {
         BMIResponse bmiResponse = response.getBody();
         recordRepository.save(RecordEntity.builder()
                 .date(new Date(System.currentTimeMillis()))
