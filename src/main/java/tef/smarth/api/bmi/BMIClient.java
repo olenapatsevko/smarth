@@ -35,7 +35,7 @@ public class BMIClient {
 
 
     static final String URL = "https://bmi.p.rapidapi.com/";
-    static final String SECURITY_KEY = "0e4c7b750emsh12711b9e7f9a209p18dcaajsn9cfc950971cc";
+
 
 
     public BMIResponse post(BMIRequest request, UserEntity userEntity) {
