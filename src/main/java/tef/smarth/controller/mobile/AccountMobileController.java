@@ -7,14 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
+import tef.smarth.dto.RegistrationRequest;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.model.UserDto;
 import tef.smarth.service.SecurityService;
 import tef.smarth.service.UserService;
+import tef.smarth.utils.UserUtils;
 import tef.smarth.utils.UserValidator;
 
 import java.net.http.HttpResponse;
@@ -26,9 +25,6 @@ public class AccountMobileController {
     private final Logger logger = LoggerFactory.getLogger(AccountMobileController.class);
 
     @Autowired
-    private UserValidator userValidator;
-
-    @Autowired
     private SecurityService securityService;
 
     @Autowired
@@ -36,14 +32,9 @@ public class AccountMobileController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/registration")
-    public HttpResponse registration(@ModelAttribute("userForm") UserEntity userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
-        if (bindingResult.hasErrors()) {
-            logger.info("reg. form had errors. redirecting");
+    public HttpResponse registration(@RequestBody RegistrationRequest user) {
 
-        }
-        userService.registerUser(userForm);
-        securityService.autoLoginAfterReg(userForm.getUsername(), userForm.getPasswordConfirm());
+        userService.registerUser(UserUtils.getUserEntity(user));
         logger.info("user registered");
         return null;
         }

@@ -27,4 +27,8 @@ public class RegistrationRequest {
     private String email;
 
     private BloodGroup bloodGroup;
+
+    private int hip;
+
+    private int waist;
 }
