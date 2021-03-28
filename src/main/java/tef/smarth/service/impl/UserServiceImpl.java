@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public List findAll() {
+    public List<UserEntity> findAll() {
         return StreamSupport.stream(userRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
@@ -63,16 +63,3 @@ public class UserServiceImpl implements UserService {
     }
 
 }
-
-
-//    public static User getDefaultInspectorInstance() {
-////        if (defaultInspectorByRegistrationInstance == null) {
-////            synchronized (User.class) {
-////                if (defaultInspectorByRegistrationInstance == null) {
-////                    defaultInspectorByRegistrationInstance = new User();
-////                    defaultInspectorByRegistrationInstance.setId(1L);
-////                }
-////            }
-////        }
-////        return defaultInspectorByRegistrationInstance;
-////    }
