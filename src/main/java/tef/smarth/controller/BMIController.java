@@ -22,10 +22,12 @@ public class BMIController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BMIClient bmiClient;
+
     @GetMapping(value = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
     public BMIResponse postBMI(@RequestBody MailRequest mailRequest) {
         UserEntity userEntity = userRepository.findByEmail(mailRequest.getEmail());
-        BMIClient bmiClient = new BMIClient();
         return bmiClient.post(BMIRequest.builder()
                 .age(String.valueOf(DateUtil.calculateAge(userEntity.getBirthday().toLocalDate())))
                 .height(BMIParameter.builder()

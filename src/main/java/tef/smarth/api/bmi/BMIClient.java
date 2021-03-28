@@ -4,11 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tef.smarth.api.bmi.request.BMIParameter;
 import tef.smarth.api.bmi.request.BMIRequest;
@@ -23,16 +26,12 @@ import tef.smarth.service.UserService;
 import javax.xml.ws.WebServiceClient;
 import java.sql.Date;
 
-@WebServiceClient
 @Data
-@NoArgsConstructor
-@Component
+@Service
 public class BMIClient {
 
     @Autowired
     private RecordRepository recordRepository;
-    @Autowired
-    private  UserService userService;
 
 
     static final String URL = "https://bmi.p.rapidapi.com/";
