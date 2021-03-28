@@ -17,9 +17,9 @@ public final class UserMapper {
 
         UserDto dto = new UserDto();
         dto.setId(user.getId());
-//        dto.setEmail(user.getEmail());
+        dto.setEmail(user.getEmail());
         dto.setPassword(user.getPassword());
-        //todo set all needed fields
+
 
         return dto;
     }
