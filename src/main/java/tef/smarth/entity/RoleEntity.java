@@ -1,15 +1,12 @@
 package tef.smarth.entity;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
 
 @Getter
 @Setter
@@ -35,11 +32,9 @@ public class RoleEntity {
     }
 
     public RoleEntity(Integer id, String name) {
-            this.id = id;
+        this.id = id;
         this.name = name;
     }
-
-
 
     @Override
     public boolean equals(Object o) {
@@ -55,29 +50,4 @@ public class RoleEntity {
         return Objects.hash(id, name);
     }
 }
-
-
-
-
-
-
-
-
-
-
-//    @Transient
-//    static Role defaultRoleByRegistrationInstance;
-//
-//    public static Role getDefaultRoleInstance() {
-//        if (defaultRoleByRegistrationInstance == null) {
-//            synchronized (Role.class) {
-//                if (defaultRoleByRegistrationInstance == null) {
-//                    defaultRoleByRegistrationInstance = new Role();
-//                    defaultRoleByRegistrationInstance.setId(0L);
-//                    defaultRoleByRegistrationInstance.setName("CLIENT");
-//                }
-//            }
-//        }
-//        return defaultRoleByRegistrationInstance;
-//    }
 

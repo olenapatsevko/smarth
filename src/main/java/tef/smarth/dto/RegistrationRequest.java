@@ -8,7 +8,6 @@ import java.sql.Date;
 @Data
 public class RegistrationRequest {
 
-
     private String firstName;
 
     private String lastName;

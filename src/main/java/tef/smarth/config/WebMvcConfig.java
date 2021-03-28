@@ -1,6 +1,5 @@
 package tef.smarth.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -27,10 +26,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return lci;
     }
 
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
-
 }

@@ -67,7 +67,6 @@ public class SecurityServiceImpl implements SecurityService {
         }
     }
 
-
     @Override
     public void login(String username, String password) {
 
@@ -82,7 +81,4 @@ public class SecurityServiceImpl implements SecurityService {
             logger.debug(format("Auto login %s successfully!", username));
         }
     }
-
-
-
 }

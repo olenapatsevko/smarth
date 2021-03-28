@@ -10,6 +10,4 @@ public enum BloodGroup {
     A_N,
     B_N,
     AB_N,
-
-
 }

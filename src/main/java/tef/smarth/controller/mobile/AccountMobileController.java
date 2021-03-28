@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import tef.smarth.controller.AccountController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.model.UserDto;
 import tef.smarth.service.SecurityService;
@@ -32,34 +34,23 @@ public class AccountMobileController {
     @Autowired
     private UserService userService;
 
-
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/registration")
     public HttpResponse registration(@ModelAttribute("userForm") UserEntity userForm, BindingResult bindingResult) {
-
         userValidator.validate(userForm, bindingResult);
-
         if (bindingResult.hasErrors()) {
             logger.info("reg. form had errors. redirecting");
 
         }
-
         userService.registerUser(userForm);
         securityService.autoLoginAfterReg(userForm.getUsername(), userForm.getPasswordConfirm());
-
         logger.info("user registered");
         return null;
         }
-
-
-
-
 
     @PostMapping("/login")
     public String login(@ModelAttribute UserDto userDto, Model model) {
         securityService.login(userDto.getUsername(), userDto.getPassword());
         return "redirect:/registration";
     }
-
-
 }

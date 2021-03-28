@@ -1,19 +1,15 @@
 package tef.smarth.service.impl;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import tef.smarth.entity.RoleEntity;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.repository.RoleRepository;
 import tef.smarth.service.RoleService;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -41,13 +37,6 @@ public class RoleServiceImpl implements RoleService {
     public void setComplaintRepository(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
-
-
-//    @Override
-//    public List<Role> findAllByUserName(String userName) {
-//        return roleRepository.findByPersons_userName(userName);
-//    }
-
 
     @Override
     public List<RoleEntity> findAllByUser(UserEntity userEntity) {

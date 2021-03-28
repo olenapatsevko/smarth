@@ -20,18 +20,14 @@ public class RecommendationServiceImpl implements RecommendationService {
     @Autowired
     private RecommendationsRepository recommendationsRepository;
 
-
     public RecommendationResponse getRecommendations(int count) {
-
         return new RecommendationResponse(getRandomRecommendations(count));
-
     }
 
     private List<RecommendationEntity> getRandomRecommendations(int count) {
         Random rand = new Random();
         List<RecommendationEntity> givenList = Lists.newArrayList(recommendationsRepository.findAll());
         List<RecommendationEntity> result = new ArrayList<>();
-
         for (int i = 0; i < count; i++) {
             int randomIndex = rand.nextInt(givenList.size());
             result.add(givenList.remove(randomIndex));

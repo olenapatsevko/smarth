@@ -32,11 +32,11 @@ public class RecordEntity {
     @Column(name = "value")
     private String value;
 
-    @Column(name="record_type")
+    @Column(name = "record_type")
     @Enumerated(EnumType.STRING)
     private RecordType recordType;
 
-    @Column(name="parameter_type")
+    @Column(name = "parameter_type")
     @Enumerated(EnumType.STRING)
     private ParameterType parameterType;
 
@@ -44,14 +44,13 @@ public class RecordEntity {
     private String measurement;
 
     @Column(name = "date")
-    private  Date date;
+    private Date date;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-
     public String getSummary() {
-        return '\n' +  name + ": " + value + measurement + " on " + date  ;
+        return '\n' + name + ": " + value + measurement + " on " + date;
     }
 }

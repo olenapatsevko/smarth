@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.repository.UserRepository;
 
-
 import java.util.Collections;
 
 @Service
@@ -23,14 +22,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
         UserEntity userEntity = userRepository.findByUsername(username);
-
         if (userEntity == null) throw new UsernameNotFoundException(username);
-
-
         return new org.springframework.security.core.userdetails
-                .User(userEntity.getUsername(), userEntity.getPassword(), Collections.singleton(new SimpleGrantedAuthority("USER")));
-
+                .User(userEntity.getUsername(),
+                userEntity.getPassword(),
+                Collections.singleton(new SimpleGrantedAuthority("USER")));
     }
-
-
 }
