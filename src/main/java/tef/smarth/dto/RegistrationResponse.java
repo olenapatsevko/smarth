@@ -7,8 +7,6 @@ import lombok.Data;
 @Data
 public class RegistrationResponse {
 
-    String email;
-    String username;
-    String password;
+    boolean registrationSuccess;
     String error;
 }

@@ -36,8 +36,8 @@ public class AccountMobileController {
         if (registrationValidator.isValid(user)){
             userService.registerUser(UserUtils.getUserEntity(user));
             logger.info("user registered");
-            return RegistrationResponse.builder().email(user.getEmail()).username(user.getUsername()).build();
+            return RegistrationResponse.builder().registrationSuccess(true).build();
         }
-            return RegistrationResponse.builder().email("Validation failed").build();
+            return RegistrationResponse.builder().registrationSuccess(false).error("Validation failed").build();
         }
 }
