@@ -1,5 +1,11 @@
 package tef.smarth.entity.enums;
 
 public enum ParameterType {
-    MASS_INDEX
+    MASS_INDEX,
+    LEUKOCYTES,
+    HEMOGLOBIN,
+    HEMOPROTEIN,
+    THROMBOCYTES,
+    HOMA;
+
 }

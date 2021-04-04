@@ -24,12 +24,13 @@ public class RecommendationServiceImpl implements RecommendationService {
         return new RecommendationResponse(getRandomRecommendations(count));
     }
 
-    private List<RecommendationEntity> getRandomRecommendations(int count) {
+    public List<RecommendationEntity> getRandomRecommendations(int count) {
         Random rand = new Random();
         List<RecommendationEntity> givenList = Lists.newArrayList(recommendationsRepository.findAll());
         List<RecommendationEntity> result = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             int randomIndex = rand.nextInt(givenList.size());
+            givenList.get(randomIndex).setId(i+1);
             result.add(givenList.remove(randomIndex));
         }
         return result;

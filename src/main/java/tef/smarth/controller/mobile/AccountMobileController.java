@@ -13,6 +13,7 @@ import tef.smarth.entity.UserEntity;
 import tef.smarth.model.UserDto;
 import tef.smarth.service.SecurityService;
 import tef.smarth.service.UserService;
+import tef.smarth.service.impl.RecommendationServiceImpl;
 import tef.smarth.utils.RegistrationValidator;
 import tef.smarth.utils.UserUtils;
 import tef.smarth.utils.UserValidator;
@@ -33,17 +34,20 @@ public class AccountMobileController {
     private UserService userService;
 
     @Autowired
+    private RecommendationServiceImpl recommendationService;
+
+    @Autowired
     private RegistrationValidator registrationValidator;
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/registration")
     public RegistrationResponse registration(@RequestBody RegistrationRequest user) {
-        if (registrationValidator.isValid(user)){
+       // if (registrationValidator.isValid(user)){
             userService.registerUser(UserUtils.getUserEntity(user));
             logger.info("user registered");
             return RegistrationResponse.builder().registrationSuccess(true).build();
-        }
-            return RegistrationResponse.builder().registrationSuccess(false).error("Validation failed").build();
+     //   }
+  //          return RegistrationResponse.builder().registrationSuccess(false).error("Validation failed").build();
         }
 
     @GetMapping("/login")

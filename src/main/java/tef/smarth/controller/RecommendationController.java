@@ -1,9 +1,7 @@
 package tef.smarth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tef.smarth.dto.RecommendationResponse;
@@ -16,8 +14,9 @@ public class RecommendationController {
     @Autowired
     private RecommendationServiceImpl recommendationService;
 
-    @GetMapping(value= "/getRecommendations/{count}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public RecommendationResponse getRecommendations(@PathVariable(name = "count") Integer count){
+    @GetMapping("/getRecommendations")
+    public RecommendationResponse getRecommendations(){
+       int  count = 5;
         return recommendationService.getRecommendations(count);
     }
 }

@@ -2,11 +2,14 @@ package tef.smarth.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tef.smarth.dto.RecommendationResponse;
 import tef.smarth.entity.Calculation;
 import tef.smarth.entity.DiseaseEntity;
+import tef.smarth.entity.RecommendationEntity;
 import tef.smarth.entity.RecordEntity;
 import tef.smarth.entity.enums.BloodGroup;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
