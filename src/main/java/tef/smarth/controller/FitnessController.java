@@ -10,7 +10,7 @@ import tef.smarth.api.fitness.request.Exercise;
 import tef.smarth.api.fitness.FitnessClient;
 import tef.smarth.api.fitness.request.FitnessRequest;
 import tef.smarth.api.fitness.request.Goal;
-import tef.smarth.api.fitness.response.FitnessResponse;
+
 
 @RestController
 @RequestMapping("/api")

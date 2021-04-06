@@ -6,13 +6,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tef.smarth.api.fitness.request.FitnessRequest;
 import tef.smarth.repository.RecordRepository;
 
 @Data
-@Service
+@Component
 public class FitnessClient {
 
     @Autowired
