@@ -6,6 +6,16 @@ public enum ParameterType {
     HEMOGLOBIN,
     HEMOPROTEIN,
     THROMBOCYTES,
-    HOMA;
+    HOMA,
+    AST("Aspartate transaminase (AST)"),
+    ALT("Alanine transaminase (ALT)");
 
+    private String value;
+
+    ParameterType(String value) {
+        this.value = value;
+    }
+
+    ParameterType() {
+    }
 }

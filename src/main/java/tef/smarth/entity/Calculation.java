@@ -2,6 +2,8 @@ package tef.smarth.entity;
 
 
 import lombok.*;
+import tef.smarth.entity.enums.CalculationType;
+import tef.smarth.entity.enums.Measurements;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -25,13 +27,17 @@ public class Calculation {
     private Integer id;
 
     @Column(name = "name")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private CalculationType name;
 
     @Column(name = "date")
     private Date date;
 
     @Column(name = "value")
     private double value;
+
+    @Column(name = "measurement")
+    private Measurements measurement;
 
     @Column(name = "meaning")
     private String meaning;
