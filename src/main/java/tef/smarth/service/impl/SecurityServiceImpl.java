@@ -44,6 +44,15 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
+    public UserEntity findLoggedInUser() {
+        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
+        if (userDetails instanceof UserDetails) {
+            return userRepository.findByUsername(((UserDetails)userDetails).getUsername());
+        }
+        return null;
+    }
+
+    @Override
     public Set<RoleEntity> getLoggedUserRoles(){
         String username = findLoggedInUsername();
         UserEntity userEntity = userRepository.findByUsername(username);

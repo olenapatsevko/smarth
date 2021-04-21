@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "calculations")
-public class Calculation {
+public class CalculationEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -45,4 +45,5 @@ public class Calculation {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
+
 }

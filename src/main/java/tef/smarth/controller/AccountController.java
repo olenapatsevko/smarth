@@ -10,9 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 import tef.smarth.entity.UserEntity;
-import tef.smarth.model.UserDto;
+import tef.smarth.model.User;
 import tef.smarth.service.SecurityService;
 import tef.smarth.service.UserService;
 import tef.smarth.utils.UserValidator;
@@ -57,19 +56,19 @@ public class AccountController {
 
     @GetMapping("/login")
     public String loginPage(Model model) {
-        model.addAttribute("userDto", new UserDto());
+        model.addAttribute("userDto", new User());
         return "login";
     }
 
 
     @PostMapping("/login")
-    public String login(@ModelAttribute UserDto userDto, Model model) {
+    public String login(@ModelAttribute User user, Model model) {
 //        if (error != null)
 //            model.addAttribute("error", "Your username and password is invalid.");
 //
 //        if (logout != null)
 //            model.addAttribute("message", "You have been logged out successfully.");
-        securityService.login(userDto.getUsername(), userDto.getPassword());
+        securityService.login(user.getUsername(), user.getPassword());
         return "redirect:/registration";
     }
 

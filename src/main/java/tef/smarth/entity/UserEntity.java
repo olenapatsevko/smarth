@@ -1,7 +1,6 @@
 package tef.smarth.entity;
 
 import lombok.*;
-import org.checkerframework.common.aliasing.qual.Unique;
 import tef.smarth.entity.enums.BloodGroup;
 
 import javax.persistence.*;
@@ -80,7 +79,7 @@ public class UserEntity {
 
     @Column(name = "calculations")
     @OneToMany(mappedBy = "user")
-    private Set<Calculation> calculations;
+    private Set<CalculationEntity> calculations;
     @Transient
     private String passwordConfirm;
 

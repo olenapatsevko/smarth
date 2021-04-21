@@ -1,13 +1,22 @@
-package tef.smarth.dto;
+package tef.smarth.model;
 
-import lombok.Data;
+
+import lombok.*;
 import tef.smarth.entity.enums.ParameterType;
 import tef.smarth.entity.enums.RecordType;
 
 import java.sql.Date;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
+@AllArgsConstructor
+@Builder
+@ToString
+@NoArgsConstructor
 public class Record {
+
+    private Integer id;
 
     private String name;
 
@@ -21,4 +30,9 @@ public class Record {
 
     private Date date;
 
+    private User user;
+
+    public String getSummary() {
+        return '\n' + name + ": " + value + measurement + " on " + date;
+    }
 }

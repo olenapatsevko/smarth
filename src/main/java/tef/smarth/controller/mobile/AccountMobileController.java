@@ -7,10 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tef.smarth.dto.RegistrationRequest;
-import tef.smarth.controller.mobile.mapper.UserMapper;
 import tef.smarth.dto.RegistrationResponse;
 import tef.smarth.entity.UserEntity;
-import tef.smarth.model.UserDto;
+import tef.smarth.mapper.UserMapper;
+import tef.smarth.model.User;
 import tef.smarth.service.SecurityService;
 import tef.smarth.service.UserService;
 import tef.smarth.service.impl.RecommendationServiceImpl;
@@ -39,6 +39,9 @@ public class AccountMobileController {
     @Autowired
     private RegistrationValidator registrationValidator;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/registration")
     public RegistrationResponse registration(@RequestBody RegistrationRequest user) {
@@ -51,11 +54,11 @@ public class AccountMobileController {
         }
 
     @GetMapping("/login")
-    public ResponseEntity<UserDto> userAccount() {
+    public ResponseEntity<User> userAccount() {
         //Requests from mobile are coming with 'Authorization header'
         //so we can just get CURRENT user instead of searching in db
         UserEntity currentUser = userService.obtainCurrentPrincipleUser();
-        UserDto dto = UserMapper.toDto(currentUser);
+        User dto = userMapper.convertToModel(currentUser);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

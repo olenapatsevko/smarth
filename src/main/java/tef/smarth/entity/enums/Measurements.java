@@ -1,11 +1,22 @@
 package tef.smarth.entity.enums;
 
 public enum Measurements {
-    PERCENT ("%");
+    PERCENT ("%"),
+    NONE("");
 
-    private String value;
+    private final String value;
 
     Measurements(String value) {
         this.value = value;
     }
+
+    public String getValue() {
+        return value;
+    }
+
+    public Measurements of(String s){
+        return  Measurements.valueOf(s);
+    }
+
+
 }

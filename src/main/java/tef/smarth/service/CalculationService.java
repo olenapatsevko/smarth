@@ -1,10 +1,11 @@
 package tef.smarth.service;
 
-import tef.smarth.dto.Record;
-import tef.smarth.entity.Calculation;
-import tef.smarth.entity.RecordEntity;
+import org.springframework.stereotype.Service;
+import tef.smarth.model.Record;
+import tef.smarth.entity.CalculationEntity;
 
+@Service
 public interface CalculationService {
 
-    Calculation caluclateRitis(Record ast, Record alt);
+    CalculationEntity caluclateRitis(Record ast, Record alt);
 }

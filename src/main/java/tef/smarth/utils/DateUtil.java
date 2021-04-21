@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
@@ -21,5 +22,9 @@ public class DateUtil {
         } else {
             return 0;
         }
+    }
+
+    public static java.sql.Date getCurrentSqlDate(){
+        return new java.sql.Date(Calendar.getInstance().getTimeInMillis());
     }
 }
