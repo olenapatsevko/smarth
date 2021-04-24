@@ -46,7 +46,7 @@ public class MailServiceImpl implements MailService {
                 userEntity.getFirstName(),
                 userEntity.getLastName(),
                 userEntity.getBirthday().toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
-                userEntity.isMan() ? "Male" : "Female",
+                userEntity.getSex().displayName,
                 getCalculations(userEntity))
         );
         return message;

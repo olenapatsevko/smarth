@@ -44,65 +44,143 @@
                 <div class="card">
                     <div class="card-header">Register</div>
                     <div class="card-body wrapper fadeInDown">
-                        <form name="my-form" onsubmit="return validform()" action="#" method="post">
+                        <!--/*@thymesVar id="userForm" type="tef.smarth.model.User"*/-->
+                        <form th:object="${userForm}" action="#" th:action="@{/registration}" method="post">
+
                             <div class="form-group row">
-                                <label for="full_name" class="col-md-4 col-form-label text-md-right">Full Name</label>
+                                <label for="firstName" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.first.name}">
+                                </label>
                                 <div class="col-md-6">
-                                    <input type="text" id="full_name" class="form-control" name="full-name">
+                                    <input th:field="*{firstName}" type="text" id="firstName" class="form-control"
+                                           name="firstName" required
+                                           th:placeholder="#{placeholder.first.name}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
-                                    Address</label>
+                                <label for="lastName" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.last.name}">
+                                </label>
                                 <div class="col-md-6">
-                                    <input type="text" id="email_address" class="form-control" name="email-address">
+                                    <input th:field="*{lastName}" type="text" id="lastName" class="form-control"
+                                           name="lastName" required
+                                           th:placeholder="#{placeholder.last.name}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="user_name" class="col-md-4 col-form-label text-md-right">User Name</label>
+                                <label for="username" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.username}">
+                                </label>
                                 <div class="col-md-6">
-                                    <input type="text" id="user_name" class="form-control" name="username">
+                                    <input th:field="*{username}" type="text" id="username" class="form-control"
+                                           name="username" required
+                                           th:placeholder="#{placeholder.username}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.email}">
+                                </label>
+                                <div class="col-md-6">
+                                    <input th:field="*{email}" type="email" id="email" class="form-control" name="email"
+                                           required
+                                           th:placeholder="#{placeholder.email}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="phone_number" class="col-md-4 col-form-label text-md-right">Phone
-                                    Number</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.password}">
+                                </label>
                                 <div class="col-md-6">
-                                    <input type="text" id="phone_number" class="form-control">
+                                    <input th:field="*{password}" type="text" id="password" class="form-control"
+                                           name="password" required
+                                           th:placeholder="#{placeholder.password}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="present_address" class="col-md-4 col-form-label text-md-right">Present
-                                    Address</label>
+                                <label for="sex" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.sex}"></label>
                                 <div class="col-md-6">
-                                    <input type="text" id="present_address" class="form-control">
+                                    <select th:field="*{sex}" id="sex" name="sex" class="col-md-6 form-control">
+                                        <option th:each="sex : ${T(tef.smarth.entity.enums.Sex).values()}"
+                                                th:value="${sex}" th:text="${sex.displayName}"></option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="permanent_address" class="col-md-4 col-form-label text-md-right">Permanent
-                                    Address</label>
+                                <label for="birthday" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.birthday}">
+                                </label>
                                 <div class="col-md-6">
-                                    <input type="text" id="permanent_address" class="form-control"
-                                           name="permanent-address">
+                                    <input th:field="*{birthday}" type="date" id="birthday" min="1920-01-01" value="2003-01-01"  max="2003-01-01" class="form-control"
+                                           name="password" required
+                                           th:placeholder="#{placeholder.birthday}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="nid_number" class="col-md-4 col-form-label text-md-right"><abbr
-                                        title="National Id Card">NID</abbr> Number</label>
+                                <label for="weight" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.weight}">
+                                </label>
                                 <div class="col-md-6">
-                                    <input type="text" id="nid_number" class="form-control" name="nid-number">
+                                    <input th:field="*{weight}" type="number" id="weight" value="30" min="30" class="form-control"
+                                           name="password" required
+                                           th:placeholder="#{placeholder.weight}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="height" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.height}">
+                                </label>
+                                <div class="col-md-6">
+                                    <input th:field="*{height}" type="number" id="height" value="30" min="120" class="form-control"
+                                           name="password" required
+                                           th:placeholder="#{placeholder.height}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="hip" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.hip}">
+                                </label>
+                                <div class="col-md-6">
+                                    <input th:field="*{hip}" type="number" id="hip" value="30" min="50" class="form-control"
+                                           name="password" required
+                                           th:placeholder="#{placeholder.hip}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="waist" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.waist}">
+                                </label>
+                                <div class="col-md-6">
+                                    <input th:field="*{waist}" type="number" id="waist" value="30" min="30" class="form-control"
+                                           name="password" required
+                                           th:placeholder="#{placeholder.waist}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="bloodGroup" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.blood.group}"></label>
+                                <div class="col-md-6">
+                                    <select th:field="*{bloodGroup}" id="bloodGroup" name="bloodGroup"
+                                            class="col-md-6 form-control">
+                                        <option th:each="bloodGroup : ${T(tef.smarth.entity.enums.BloodGroup).values()}"
+                                                th:value="${bloodGroup}" th:text="${bloodGroup.displayName}"></option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
+                                <button type="submit" th:text="#{sign.up}" class="btn btn-primary">
+
                                 </button>
                             </div>
                         </form>

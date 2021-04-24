@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import tef.smarth.entity.UserEntity;
+import tef.smarth.mapper.UserMapper;
 import tef.smarth.model.User;
 import tef.smarth.service.SecurityService;
 import tef.smarth.service.UserService;
@@ -31,6 +32,9 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new UserEntity());
@@ -38,20 +42,20 @@ public class AccountController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") UserEntity userForm, BindingResult bindingResult) {
+    public String registration(@ModelAttribute("userForm") User user, BindingResult bindingResult) {
 
-        userValidator.validate(userForm, bindingResult);
+        userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
             logger.info("reg. form had errors. redirecting");
             return "registration";
         }
 
-        userService.registerUser(userForm);
-        securityService.autoLoginAfterReg(userForm.getUsername(), userForm.getPasswordConfirm());
+        userService.registerUser(userMapper.convertToEntity(user));
+        securityService.autoLoginAfterReg(user.getUsername(), user.getPassword());
 
         logger.info("user registered");
-        return "redirect:/registration";
+        return "redirect:/personal-cabinet";
     }
 
     @GetMapping("/login")

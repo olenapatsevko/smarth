@@ -2,6 +2,7 @@ package tef.smarth.entity;
 
 import lombok.*;
 import tef.smarth.entity.enums.BloodGroup;
+import tef.smarth.entity.enums.Sex;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -40,7 +41,8 @@ public class UserEntity {
     private String password;
 
     @Column(name = "sex")
-    private boolean isMan;
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
 
     @Column(name = "age")
     private Date birthday;

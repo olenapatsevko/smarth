@@ -2,6 +2,7 @@ package tef.smarth.model;
 
 import lombok.*;
 import tef.smarth.entity.enums.BloodGroup;
+import tef.smarth.entity.enums.Sex;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -30,7 +31,7 @@ public class User {
 
     private String password;
 
-    private boolean isMan;
+    private Sex sex;
 
     private Date birthday;
 

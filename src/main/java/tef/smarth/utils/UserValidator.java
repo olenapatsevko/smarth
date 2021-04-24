@@ -7,6 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import tef.smarth.entity.UserEntity;
+import tef.smarth.model.User;
 import tef.smarth.service.UserService;
 
 
@@ -19,15 +20,15 @@ public class UserValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return UserEntity.class.equals(aClass);
+        return User.class.equals(aClass);
     }
 
     @Override
     public void validate(Object o, Errors errors) {
-        UserEntity user = (UserEntity) o;
+        User user = (User) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUsername().length() < 2 || user.getUsername().length() > 32) {
+        if (user.getUsername().length() < 1 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
         }
         if (userService.findByUsername(user.getUsername()) != null) {
@@ -35,13 +36,13 @@ public class UserValidator implements Validator {
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 2 || user.getPassword().length() > 32) {
+        if (user.getPassword().length() < 1 || user.getPassword().length() > 32) {
             errors.rejectValue("password", "Size.userForm.password");
         }
 
-        if (!user.getPasswordConfirm().equals(user.getPassword())) {
+        /*if (!user.getPasswordConfirm().equals(user.getPassword())) {
             errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
-        }
+        }*/
     }
 
 }

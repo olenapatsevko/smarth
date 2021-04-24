@@ -2,6 +2,7 @@ package tef.smarth.utils;
 
 import tef.smarth.dto.RegistrationRequest;
 import tef.smarth.entity.UserEntity;
+import tef.smarth.entity.enums.Sex;
 
 public class UserUtils {
 
@@ -13,7 +14,7 @@ public class UserUtils {
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .username(request.getUsername())
-                .isMan(request.isMan())
+                .sex(Sex.MALE)
                 .password(request.getPassword())
                 .height(request.getHeight())
                 .weight(request.getWeight())

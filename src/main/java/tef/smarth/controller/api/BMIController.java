@@ -9,6 +9,7 @@ import tef.smarth.api.bmi.request.BMIRequest;
 import tef.smarth.api.bmi.response.BMIResponse;
 import tef.smarth.dto.MailRequest;
 import tef.smarth.entity.UserEntity;
+import tef.smarth.entity.enums.Sex;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.utils.DateUtil;
 
@@ -31,7 +32,7 @@ public class BMIController {
                         .value(userEntity.getHeight() + ".00")
                         .unit("cm")
                         .build())
-                .sex(userEntity.isMan() ? "m" : "f")
+                .sex(userEntity.getSex().equals(Sex.MALE) ? "m" : "f")
                 .weight(BMIParameter.builder()
                         .value(userEntity.getWeight() + ".00")
                         .unit("kg")
