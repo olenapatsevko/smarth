@@ -26,10 +26,12 @@
 
         <!-- Login Form -->
         <form method="post" th:action="@{/login}" th:object="${userDto}">
-            <input type="text" id="username" class="fadeIn second" th:field="*{username}" name="username" placeholder="username">
-            <input type="text" id="password" class="fadeIn third" th:field="*{password}" name="login" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
-            <input type="reset" value="Reset" />
+            <input type="text" id="username" class="fadeIn second" th:field="*{username}" name="username"
+                   th:placeholder="#{placeholder.username}">
+            <input type="text" id="password" class="fadeIn third" th:field="*{password}" name="login"
+                   th:placeholder="#{placeholder.password}">
+            <input type="submit" class="fadeIn fourth" th:value="#{login}">
+            <input type="reset" value="Reset"/>
         </form>
 
         <!-- Remind Passowrd -->
@@ -37,7 +39,25 @@
             <a class="card-link " href="#">Forgot Password?</a>
             <a class="card-link" th:href="@{/registration}">Registration</a>
         </div>
-
+            <div th:with="currentUrl=(${#httpServletRequest.requestURI + '?' + #strings.defaultString(#httpServletRequest.queryString, '')})">
+                <div th:if="${(param.lang != null)}" >
+                    <a class="card-link"
+                       th:href="@{${urlBuilder.replaceQueryParam('lang', 'ua').build().toUriString()}}"
+                       th:text="#{navbar.locale.ua}"
+                       th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}"></a>
+                    <a class="card-link"
+                       th:href="@{${urlBuilder.replaceQueryParam('lang', 'eng').build().toUriString()}}"
+                       th:text="#{navbar.locale.eng}"
+                       th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                    </a>
+                </div>
+                <div th:if="${(param.lang == null)}" >
+                    <a class="card-link" th:href="@{${currentUrl}(lang=ua)}"
+                       th:text="#{navbar.locale.ua}"></a>
+                    <a class="card-link" th:href="@{${currentUrl}(lang=eng)}"
+                       th:text="#{navbar.locale.eng}"></a>
+                </div>
+            </div>
     </div>
 </div>
 </body>

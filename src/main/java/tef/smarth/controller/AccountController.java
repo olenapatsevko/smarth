@@ -42,7 +42,7 @@ public class AccountController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User user, BindingResult bindingResult) {
+    public String registration(@ModelAttribute("userForm") User user, BindingResult bindingResult, Model model) {
 
         userValidator.validate(user, bindingResult);
 
@@ -53,7 +53,6 @@ public class AccountController {
 
         userService.registerUser(userMapper.convertToEntity(user));
         securityService.autoLoginAfterReg(user.getUsername(), user.getPassword());
-
         logger.info("user registered");
         return "redirect:/personal-cabinet";
     }
@@ -78,8 +77,7 @@ public class AccountController {
 
     @GetMapping("/personal-cabinet")
     public String personalCabinet(Model model) {
-        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
-        model.addAttribute("user", userMapper.convertToModel(userEntity));
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         return "personal-cabinet";
     }
 

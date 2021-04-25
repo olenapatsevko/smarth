@@ -27,6 +27,30 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" th:text="#{contact}" href="#signup">Contact</a></li>
                         <li class="nav-item"><a class="nav-link  " th:text="#{login}" href="/login">Login</a></li>
                         <li class="nav-item"><a class="nav-link " th:text="#{register}" href="/registration">Register</a></li>
+                        <li class="nav-item">
+                            <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
+                            <li class="nav-item dropdown"   th:with="currentUrl=(${#httpServletRequest.requestURI + '?' + #strings.defaultString(#httpServletRequest.queryString, '')})">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{lang}">
+                                </a>
+                                <div th:if="${(param.lang != null)}" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item"
+                                       th:href="@{${urlBuilder.replaceQueryParam('lang', 'ua').build().toUriString()}}"
+                                       th:text="#{navbar.locale.ua}"
+                                       th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}"></a>
+                                    <a class="dropdown-item"
+                                       th:href="@{${urlBuilder.replaceQueryParam('lang', 'eng').build().toUriString()}}"
+                                       th:text="#{navbar.locale.eng}"
+                                       th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                                    </a>
+                                </div>
+                                <div th:if="${(param.lang == null)}" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" th:href="@{${currentUrl}(lang=ua)}" th:text="#{navbar.locale.ua}"></a>
+                                    <a class="dropdown-item" th:href="@{${currentUrl}(lang=eng)}" th:text="#{navbar.locale.eng}"></a>
+                                </div>
+                            </li>
+                        </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

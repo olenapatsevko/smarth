@@ -13,47 +13,44 @@
                 <li class="sidebar-item"><a class="sidebar-link sidebar-link" th:href="@{/personal-cabinet}"
                                             aria-expanded="false"><i data-feather="home"
                                                                      class="feather-icon"></i><span
-                        class="hide-menu">Personal cabinet</span></a></li>
+                        class="hide-menu" th:text="#{menu.general.personal.cabinet}"></span></a></li>
                 <li class="list-divider"></li>
-                <li class="nav-small-cap"><span class="hide-menu">User</span></li>
+                <li class="nav-small-cap"><span class="hide-menu" th:text="#{menu.general.user}"></span></li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" th:href="@{/profile-data}"
                        aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i>
-                        <span class="hide-menu">Profile data </span>
+                        <span class="hide-menu" th:text="#{menu.profile}"> </span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link" th:href="@{/add-data}" aria-expanded="false">
                         <i data-feather="message-square" class="feather-icon"></i>
-                        <span class="hide-menu">Add data</span></a>
+                        <span class="hide-menu" th:text="#{menu.add.data}"></span></a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link" th:href="@{/medical-calculations}" aria-expanded="false">
-                        <i data-feather="calendar" class="feather-icon"></i><span class="hide-menu">
-                            Medical Calculations
+                        <i data-feather="calendar" class="feather-icon"></i><span class="hide-menu" th:text="#{menu.medical.calculations}">
                         </span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link" th:href="@{/recommendations}" aria-expanded="false">
-                        <i data-feather="calendar" class="feather-icon"></i><span class="hide-menu">
-                            Recommendations
+                        <i data-feather="calendar" class="feather-icon"></i><span class="hide-menu" th:text="#{menu.recommendations}">
+
                         </span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link" th:href="@{/summary}" aria-expanded="false">
                         <i data-feather="message-square" class="feather-icon"></i>
-                        <span class="hide-menu">Summary</span></a>
+                        <span class="hide-menu" th:text="#{menu.summary}"></span></a>
                 </li>
 
                 <li class="list-divider"></li>
                 <li class="nav-small-cap">
-                        <span class="hide-menu">
-                            Health
-                    </span>
+                        <span class="hide-menu" th:text="#{menu.general.health}"></span>
                 </li>
 
                 <li class="sidebar-item"><a class="sidebar-link has-arrow" href="javascript:void(0)"
@@ -118,7 +115,7 @@
                 </li>
 
                 <li class="list-divider"></li>
-                <li class="nav-small-cap"><span class="hide-menu" th:text="#{extra}"></span></li>
+                <li class="nav-small-cap"><span class="hide-menu" th:text="#{menu.general.extra}"></span></li>
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link" th:href="@{/logout}" aria-expanded="false">
                         <i data-feather="log-out" class="feather-icon"></i>

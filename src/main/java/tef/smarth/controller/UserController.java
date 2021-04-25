@@ -27,55 +27,53 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/profile-data")
-    public String personalCabinet() {
+    public String personalCabinet(Model model) {
         return "profile-data";
     }
 
     @GetMapping("/add-data")
-    public String addData() {
+    public String addData(Model model) {
         return "add-data";
     }
 
     @GetMapping("/medical-calculations")
-    public String getCalculations() {
+    public String getCalculations(Model model) {
         return "medical-calculations";
     }
 
     @GetMapping("/recommendations")
-    public String getRecommendations() {
+    public String getRecommendations(Model model) {
         return "recommendations";
     }
 
     @GetMapping("/bmi")
-    public String getBmi() {
+    public String getBmi(Model model) {
         return "bmi";
     }
 
     @GetMapping("/fitness")
-    public String getfitness() {
+    public String getfitness(Model model) {
         return "fitness";
     }
 
     @GetMapping("/summary")
     public String getSummary(Model model) {
-        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
-    //    mailService.sendMailWithAttachment(securityService.findLoggedInUser());
-        model.addAttribute("user", userMapper.convertToModel(userEntity));
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         return "summary";
     }
 
     @GetMapping("/lexigram")
-    public String getlexigram() {
+    public String getlexigram(Model model) {
         return "lexigram";
     }
 
     @GetMapping("/spoon")
-    public String getSpoon() {
+    public String getSpoon(Model model) {
         return "spoony";
     }
 
     @GetMapping("/covid")
-    public String getCovid() {
+    public String getCovid(Model model) {
         return "covid";
     }
 }
