@@ -47,6 +47,13 @@
                         <!--/*@thymesVar id="userForm" type="tef.smarth.model.User"*/-->
                         <form th:object="${userForm}" action="#" th:action="@{/registration}" method="post">
 
+                            <div th:if="${#fields.hasErrors('*')}">
+                                <div th:each="e : ${#fields.detailedErrors()}"
+                                     th:class="${e.global} ? globalerr : fielderr">
+                                    <p class="alert alert-danger" role="alert" th:text="${e.message}">The error message</p>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label for="firstName" class="col-md-4 col-form-label text-md-right"
                                        th:text="#{placeholder.first.name}">
