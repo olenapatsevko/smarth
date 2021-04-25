@@ -1,10 +1,30 @@
 package tef.smarth.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import tef.smarth.entity.UserEntity;
+import tef.smarth.mapper.UserMapper;
+import tef.smarth.repository.UserRepository;
+import tef.smarth.service.MailService;
+import tef.smarth.service.SecurityService;
+import tef.smarth.service.UserService;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    private MailService mailService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/profile-data")
     public String personalCabinet() {
@@ -23,17 +43,25 @@ public class UserController {
 
     @GetMapping("/recommendations")
     public String getRecommendations() {
-        return "recommendation";
+        return "recommendations";
     }
 
     @GetMapping("/bmi")
     public String getBmi() {
-        return "summary";
+        return "bmi";
+    }
+
+    @GetMapping("/fitness")
+    public String getfitness() {
+        return "fitness";
     }
 
     @GetMapping("/summary")
-    public String getfitness() {
-        return "fitness";
+    public String getSummary(Model model) {
+        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+    //    mailService.sendMailWithAttachment(securityService.findLoggedInUser());
+        model.addAttribute("user", userMapper.convertToModel(userEntity));
+        return "summary";
     }
 
     @GetMapping("/lexigram")
