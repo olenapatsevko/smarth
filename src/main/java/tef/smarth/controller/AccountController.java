@@ -77,7 +77,9 @@ public class AccountController {
     }
 
     @GetMapping("/personal-cabinet")
-    public String personalCabinet() {
+    public String personalCabinet(Model model) {
+        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+        model.addAttribute("user", userMapper.convertToModel(userEntity));
         return "personal-cabinet";
     }
 
