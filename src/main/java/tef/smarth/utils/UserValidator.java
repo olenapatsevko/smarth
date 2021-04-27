@@ -39,10 +39,15 @@ public class UserValidator implements Validator {
         if (user.getPassword().length() < 2 || user.getPassword().length() > 32) {
             errors.rejectValue("password", "Size.userForm.password");
         }
+    }
 
-        /*if (!user.getPasswordConfirm().equals(user.getPassword())) {
-            errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
-        }*/
+    public void validateOnUpdate(Object o, Errors errors) {
+        User user = (User) o;
+
+        if (user.getUsername().length() < 2 || user.getUsername().length() > 32) {
+            errors.rejectValue("username", "Size.userForm.username");
+        }
+
     }
 
 }

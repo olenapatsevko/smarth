@@ -9,6 +9,9 @@ import tef.smarth.entity.UserEntity;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.service.UserService;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -55,6 +58,36 @@ public class UserServiceImpl implements UserService {
     public void registerUser(UserEntity userEntity) {
         userEntity.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword()));
         userRepository.save(userEntity);
+    }
+
+    @Override
+    @Transactional
+    public UserEntity updateCurrentUser(UserEntity userEntity){
+        UserEntity currentUser = obtainCurrentPrincipleUser();
+
+        if (userEntity.equals(currentUser)){
+            return currentUser;
+        }
+        if (!userEntity.getEmail().equals(currentUser.getEmail())){
+            currentUser.setEmail(userEntity.getEmail());
+        }
+        if (!userEntity.getFirstName().equals(currentUser.getFirstName())){
+            currentUser.setFirstName(userEntity.getFirstName());
+        }
+        if (!userEntity.getLastName().equals(currentUser.getLastName())){
+            currentUser.setLastName(userEntity.getLastName());
+        }
+        if (!userEntity.getUsername().equals(currentUser.getUsername())){
+            currentUser.setUsername(userEntity.getUsername());
+        }
+        if (!bCryptPasswordEncoder.encode(userEntity.getPassword()).equals(currentUser.getEmail())&& !userEntity.getPassword().isBlank() ){
+            currentUser.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword()));
+        }
+        if (!userEntity.getBirthday().equals(currentUser.getBirthday())){
+            currentUser.setBirthday(userEntity.getBirthday());
+        }
+
+        return userRepository.save(currentUser);
     }
 
     public UserEntity obtainCurrentPrincipleUser() {

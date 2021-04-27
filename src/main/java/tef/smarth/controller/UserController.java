@@ -1,24 +1,39 @@
 package tef.smarth.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.mapper.UserMapper;
+import tef.smarth.model.User;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.service.MailService;
 import tef.smarth.service.SecurityService;
 import tef.smarth.service.UserService;
+import tef.smarth.utils.UserValidator;
 
 @Controller
 public class UserController {
 
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
-    private MailService mailService;
+    private UserValidator userValidator;
+
+    @Autowired
+    private SecurityService securityService;
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MailService mailService;
 
     @Autowired
     private UserMapper userMapper;
@@ -26,41 +41,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/profile-data")
-    public String personalCabinet(Model model) {
-        return "profile-data";
-    }
-
-    @GetMapping("/add-data")
-    public String addData(Model model) {
-        return "add-data";
-    }
-
-    @GetMapping("/medical-calculations")
-    public String getCalculations(Model model) {
-        return "medical-calculations";
-    }
-
-    @GetMapping("/recommendations")
-    public String getRecommendations(Model model) {
-        return "recommendations";
-    }
-
-    @GetMapping("/bmi")
-    public String getBmi(Model model) {
-        return "bmi";
-    }
-
-    @GetMapping("/fitness")
-    public String getfitness(Model model) {
-        return "fitness";
-    }
-
-    @GetMapping("/summary")
-    public String getSummary(Model model) {
-        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
-        return "summary";
-    }
 
     @GetMapping("/lexigram")
     public String getlexigram(Model model) {
@@ -76,4 +56,64 @@ public class UserController {
     public String getCovid(Model model) {
         return "covid";
     }
+
+    @GetMapping("/bmi")
+    public String getBmi(Model model) {
+        return "bmi";
+    }
+
+    @GetMapping("/fitness")
+    public String getfitness(Model model) {
+        return "fitness";
+    }
+
+    @GetMapping("/recommendations")
+    public String getRecommendations(Model model) {
+
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        return "recommendations";
+    }
+
+    @GetMapping("/profile-data")
+    public String personalCabinet(Model model) {
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        return "profile-data";
+    }
+
+    @GetMapping("/add-data")
+    public String addData(Model model) {
+        return "add-data";
+    }
+
+    @GetMapping("/medical-calculations")
+    public String getCalculations(Model model) {
+
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+
+        return "medical-calculations";
+    }
+
+
+    @GetMapping("/summary")
+    public String getSummary(Model model) {
+        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+        model.addAttribute("user", userEntity);
+        mailService.sendMailWithAttachment(userEntity);
+        return "summary";
+    }
+
+    @PostMapping("/updateUser")
+    public String updateUser(Model model, @ModelAttribute("userUpdate") User user, BindingResult bindingResult) {
+
+        userValidator.validateOnUpdate(user, bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+            logger.info("reg. form had errors. redirecting");
+            return "profile-data";
+        }
+        model.addAttribute("user", userMapper.convertToModel(userService.updateCurrentUser(userMapper.convertToEntity(user))));
+        return "profile-data";
+    }
+
+
 }
