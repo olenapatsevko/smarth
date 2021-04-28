@@ -35,7 +35,383 @@
 
     <div th:replace="header :: header" > </div>
     <div th:replace="aside :: aside" > </div>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="#{add.data.title}"></h4>
 
+                            <!--/*@thymesVar id="addForm" type="tef.smarth.model.AddDataModel"*/-->
+                            <form th:object="${addForm}" th:action="@{/add-data}" method="post">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="date" th:text="#{date}"></label>
+                                                <input type="date" id="date" name="date"
+                                                       class="form-control" th:placeholder="#{date}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="hip" th:text="#{hip}"></label>
+                                                <input type="number" id="hip" name="hip" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{hip}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="waist" th:text="#{waist}"></label>
+                                                <input type="number" id="waist" name="waist" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{waist}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="height" th:text="#{height}"></label>
+                                                <input type="number" id="height" name="height" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{height}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="glucoseBlood" th:text="#{glucoseBlood}"></label>
+                                                <input type="number" id="glucoseBlood" name="glucoseBlood" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{glucoseBlood}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="glucoseUrine" th:text="#{glucoseUrine}"></label>
+                                                <input type="number" id="glucoseUrine" name="glucoseUrine" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{glucoseUrine}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="urea" th:text="#{urea}"></label>
+                                                <input type="number" id="urea" name="hip" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{urea}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="creatinine" th:text="#{creatinine}"></label>
+                                                <input type="number" id="creatinine" name="creatinine" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{creatinine}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="uricAcid" th:text="#{uricAcid}"></label>
+                                                <input type="number" id="uricAcid" name="uricAcid" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{uricAcid}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="totalProteins" th:text="#{totalProteins}"></label>
+                                                <input type="number" id="totalProteins" name="totalProteins" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{totalProteins}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="totalBilirubin" th:text="#{totalBilirubin}"></label>
+                                                <input type="number" id="totalBilirubin" name="totalBilirubin" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{totalBilirubin}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label  for="directBilirubin" th:text="#{directBilirubin}"></label>
+                                            <input type="number" id="directBilirubin" name="directBilirubin" min="0"
+                                                   class="form-control"
+                                                   th:placeholder="#{directBilirubin}">
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label  for="cholesterol" th:text="#{cholesterol}"></label>
+                                            <input type="number" id="cholesterol" name="cholesterol" min="0"
+                                                   class="form-control"
+                                                   th:placeholder="#{cholesterol}">
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label  for="HDL" th:text="#{HDL}"></label>
+                                            <input type="number" id="HDL" name="HDL" min="0"
+                                                   class="form-control"
+                                                   th:placeholder="#{HDL}">
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label  for="LDL" th:text="#{LDL}"></label>
+                                            <input type="number" id="LDL" name="LDL" min="0"
+                                                   class="form-control"
+                                                   th:placeholder="#{LDL}">
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="GDH" th:text="#{GDH}"></label>
+                                                <input type="number" id="GDH" name="GDH" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{GDH}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="GGT" th:text="#{GGT}"></label>
+                                                <input type="number" id="GGT" name="GGT" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{GGT}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="LDH" th:text="#{LDH}"></label>
+                                                <input type="number" id="LDH" name="LDH" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{LDH}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="CRP" th:text="#{CRP}"></label>
+                                                <input type="number" id="CRP" name="CRP" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{CRP}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="alkalinePhosphatase" th:text="#{alkalinePhosphatase}"></label>
+                                                <input type="number" id="alkalinePhosphatase" name="alkalinePhosphatase" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{alkalinePhosphatase}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="ALT" th:text="#{ALT}"></label>
+                                                <input type="number" id="ALT" name="ALT" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{ALT}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="AST" th:text="#{AST}"></label>
+                                                <input type="number" id="AST" name="AST" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{AST}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="amylase" th:text="#{amylase}"></label>
+                                                <input type="number" id="amylase" name="amylase" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{amylase}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="albumin" th:text="#{albumin}"></label>
+                                                <input type="number" id="albumin" name="albumin" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{albumin}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="globulin" th:text="#{globulin}"></label>
+                                                <input type="number" id="globulin" name="globulin" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{globulin}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="pH" th:text="#{pH}"></label>
+                                                <input type="number" id="pH" name="pH" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{pH}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="protein" th:text="#{protein}"></label>
+                                                <input type="number" id="protein" name="protein" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{protein}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="density" th:text="#{density}"></label>
+                                                <input type="number" id="density" name="density" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{density}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="ketoneBodies" th:text="#{ketoneBodies}"></label>
+                                                <input type="number" id="ketoneBodies" name="ketoneBodies" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{ketoneBodies}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="bilirubin" th:text="#{bilirubin}"></label>
+                                                <input type="number" id="bilirubin" name="bilirubin" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{bilirubin}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="urobilinogen" th:text="#{urobilinogen}"></label>
+                                                <input type="number" id="urobilinogen" name="urobilinogen" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{urobilinogen}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="haemoglobin" th:text="#{haemoglobin}"></label>
+                                                <input type="number" id="haemoglobin" name="haemoglobin" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{haemoglobin}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="erythrocytes" th:text="#{erythrocytes}"></label>
+                                                <input type="number" id="erythrocytes" name="erythrocytes" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{erythrocytes}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label  for="leukocytes" th:text="#{leukocytes}"></label>
+                                            <input type="number" id="leukocytes" name="leukocytes" min="0"
+                                                   class="form-control"
+                                                   th:placeholder="#{leukocytes}">
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label  for="epithelialCells" th:text="#{epithelialCells}"></label>
+                                                <input type="number" id="epithelialCells" name="epithelialCells" min="0"
+                                                       class="form-control"
+                                                       th:placeholder="#{epithelialCells}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-info" th:text="#{submit}"></button>
+                                            <button type="reset" class="btn btn-dark" th:text="#{reset}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

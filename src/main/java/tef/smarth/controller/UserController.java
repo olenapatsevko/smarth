@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.mapper.UserMapper;
+import tef.smarth.model.AddDataModel;
 import tef.smarth.model.User;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.service.MailService;
@@ -89,6 +90,15 @@ public class UserController {
 
     @GetMapping("/add-data")
     public String addData(Model model) {
+
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        return "add-data";
+    }
+
+    @PostMapping("/add-data")
+    public String addDataForm(Model model, @ModelAttribute("addForm")AddDataModel addDataModel) {
+
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         return "add-data";
     }
 
