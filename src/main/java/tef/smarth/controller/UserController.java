@@ -14,10 +14,7 @@ import tef.smarth.mapper.UserMapper;
 import tef.smarth.model.AddDataModel;
 import tef.smarth.model.User;
 import tef.smarth.repository.UserRepository;
-import tef.smarth.service.MailService;
-import tef.smarth.service.RecommendationService;
-import tef.smarth.service.SecurityService;
-import tef.smarth.service.UserService;
+import tef.smarth.service.*;
 import tef.smarth.utils.UserValidator;
 
 import java.util.Random;
@@ -48,6 +45,8 @@ public class UserController {
     @Autowired
     private RecommendationService recommendationService;
 
+    @Autowired
+    private RecordService recordService;
 
     @GetMapping("/lexigram")
     public String getlexigram(Model model) {
@@ -92,13 +91,15 @@ public class UserController {
     public String addData(Model model) {
 
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("saved", false);
         return "add-data";
     }
 
     @PostMapping("/add-data")
-    public String addDataForm(Model model, @ModelAttribute("addForm")AddDataModel addDataModel) {
-
+    public String addDataForm(Model model, @ModelAttribute("addForm")AddDataModel addDataModel, BindingResult bindingResult) {
+        recordService.saveRecords(addDataModel);
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+       model.addAttribute("saved", true);
         return "add-data";
     }
 

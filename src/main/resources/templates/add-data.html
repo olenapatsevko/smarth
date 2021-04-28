@@ -42,7 +42,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title" th:text="#{add.data.title}"></h4>
-
+                            <h5 th:if="${saved}" class="text-success"  th:text="#{saved}"></h5>
                             <!--/*@thymesVar id="addForm" type="tef.smarth.model.AddDataModel"*/-->
                             <form th:object="${addForm}" th:action="@{/add-data}" method="post">
                                 <div class="form-body">

@@ -1,14 +1,16 @@
 package tef.smarth.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.sql.Date;
 
-@Data
-@Builder
+@Getter
+@Setter
 @EqualsAndHashCode
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AddDataModel {
 
  private Date date;
@@ -47,6 +49,5 @@ public class AddDataModel {
  private double erythrocytes;
  private double leukocytes;
  private double epithelialCells;
-
 
 }
