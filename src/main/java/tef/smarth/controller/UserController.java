@@ -14,9 +14,12 @@ import tef.smarth.mapper.UserMapper;
 import tef.smarth.model.User;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.service.MailService;
+import tef.smarth.service.RecommendationService;
 import tef.smarth.service.SecurityService;
 import tef.smarth.service.UserService;
 import tef.smarth.utils.UserValidator;
+
+import java.util.Random;
 
 @Controller
 public class UserController {
@@ -40,6 +43,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RecommendationService recommendationService;
 
 
     @GetMapping("/lexigram")
@@ -69,8 +75,9 @@ public class UserController {
 
     @GetMapping("/recommendations")
     public String getRecommendations(Model model) {
-
+        Random rand = new Random();
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("recommendations", recommendationService.getRecommendations(rand.nextInt(30)) );
         return "recommendations";
     }
 

@@ -16,4 +16,6 @@ public class Recommendation {
     private String title;
 
     private String message;
+
+    private String url;
 }

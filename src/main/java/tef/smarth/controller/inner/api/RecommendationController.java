@@ -17,6 +17,6 @@ public class RecommendationController {
     @GetMapping("/getRecommendations")
     public RecommendationResponse getRecommendations(){
        int  count = 5;
-        return recommendationService.getRecommendations(count);
+        return recommendationService.getMobileRecommendations(count);
     }
 }

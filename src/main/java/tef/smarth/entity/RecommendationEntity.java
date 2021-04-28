@@ -27,4 +27,7 @@ public class RecommendationEntity {
 
     @Column(name = "message")
     private String message;
+
+    @Column(name = "url")
+    private String url;
 }
