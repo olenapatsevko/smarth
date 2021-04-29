@@ -33,6 +33,6 @@ public class Record {
     private User user;
 
     public String getSummary() {
-        return '\n' + name + ": " + value + measurement + " on " + date;
+        return '\n' + name + ": " + value + (measurement == null ? "" : measurement) + " on " + date;
     }
 }

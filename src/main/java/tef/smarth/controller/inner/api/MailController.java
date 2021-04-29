@@ -21,6 +21,6 @@ public class MailController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/getSummary")
     public void getSummary(@RequestBody MailRequest mailRequest) {
-            mailService.sendMailWithAttachment(  userRepository.findByEmail(mailRequest.getEmail()));
+            mailService.sendMailWithAttachment(  userRepository.findByEmail(mailRequest.getEmail()), mailRequest.getEmail());
     }
 }

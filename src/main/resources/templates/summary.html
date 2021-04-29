@@ -49,16 +49,37 @@
                                     <h6 class="card-subtitle" th:text="#{summary.userTitle}"/>
                                     <!--/*@thymesVar id="user" type="tef.smarth.model.User"*/-->
                                     <div class="jumbotron">
-                                        <h1 class="display-3" th:text="#{summary.hi}+' '  + ${user.firstName} +' '+ ${user.lastName}+ '!' "/>
-                                        <p class="lead" th:text="#{summary.text2}"/>
+                                        <h1 class="display-3" th:text="#{summary.hi}+' '  + ${user.firstName} +' '+ ${user.lastName}+ '!' "></h1>
+                                        <p class="lead" th:text="#{summary.text2}"></p>
                                         <hr class="my-4">
-                                        <p th:text="#{summary.text} + ' '+ ${user.email}"/>
+                                        <p th:text="#{summary.text} + ' '+ ${user.email}"></p>
                                         <p class="lead">
                                             <a class="btn btn-primary btn-lg"
                                                role="button" th:href="@{/personal-cabinet}"
-                                               th:text="#{summary.label.go.back}"/>
+                                               th:text="#{summary.label.go.back}"></a>
                                         </p>
                                     </div>
+                                    <form th:action="@{/summary-to-doctor}" method="post">
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+
+                                                        <label for="email" th:text="#{placeholder.email.doctor.label}"></label>
+                                                        <h5 th:if="${send}" class="text-success" th:text="#{send}"></h5>
+                                                        <input type="email" id="email" name="email" required
+                                                               class="form-control" th:placeholder="#{placeholder.email.doctor}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <div class="text-right">
+                                                    <button type="submit" class="btn btn-info" th:text="#{submit}"></button>
+                                                    <button type="reset" class="btn btn-dark" th:text="#{reset}"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

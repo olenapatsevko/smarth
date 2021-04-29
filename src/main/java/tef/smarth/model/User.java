@@ -4,12 +4,7 @@ import lombok.*;
 import tef.smarth.entity.enums.BloodGroup;
 import tef.smarth.entity.enums.Sex;
 
-import javax.persistence.*;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 
 @Getter
@@ -43,15 +38,8 @@ public class User {
 
     private BloodGroup bloodGroup;
 
-    private Set<Disease> diseases;
-
-    private Set<Record> records;
-
     private int hip;
 
     private int waist;
 
-    private Set<Calculation> calculations;
-
-    private Set<Role> roles = new HashSet<>();
 }

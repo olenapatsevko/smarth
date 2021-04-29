@@ -15,6 +15,7 @@ import tef.smarth.model.AddDataModel;
 import tef.smarth.model.User;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.service.*;
+import tef.smarth.utils.RecordValidator;
 import tef.smarth.utils.UserValidator;
 
 import java.util.Random;
@@ -47,6 +48,9 @@ public class UserController {
 
     @Autowired
     private RecordService recordService;
+
+    @Autowired
+    private RecordValidator recordValidator;
 
     @GetMapping("/lexigram")
     public String getlexigram(Model model) {
@@ -89,7 +93,7 @@ public class UserController {
 
     @GetMapping("/add-data")
     public String addData(Model model) {
-
+        model.addAttribute("addForm", new AddDataModel());
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         model.addAttribute("saved", false);
         return "add-data";
@@ -97,32 +101,35 @@ public class UserController {
 
     @PostMapping("/add-data")
     public String addDataForm(Model model, @ModelAttribute("addForm")AddDataModel addDataModel, BindingResult bindingResult) {
+        recordValidator.validate(addDataModel,bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+            logger.info("reg. form had errors. redirecting");
+           return "add-data";
+        }
         recordService.saveRecords(addDataModel);
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
-       model.addAttribute("saved", true);
+        model.addAttribute("saved", true);
         return "add-data";
     }
 
     @GetMapping("/medical-calculations")
     public String getCalculations(Model model) {
-
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
-
         return "medical-calculations";
     }
-
 
     @GetMapping("/summary")
     public String getSummary(Model model) {
         UserEntity userEntity = userService.obtainCurrentPrincipleUser();
         model.addAttribute("user", userEntity);
-        mailService.sendMailWithAttachment(userEntity);
+        mailService.sendMailWithAttachment(userEntity,null);
+        model.addAttribute("send",false);
         return "summary";
     }
 
     @PostMapping("/updateUser")
     public String updateUser(Model model, @ModelAttribute("userUpdate") User user, BindingResult bindingResult) {
-
         userValidator.validateOnUpdate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", userService.obtainCurrentPrincipleUser());
@@ -133,5 +140,12 @@ public class UserController {
         return "profile-data";
     }
 
-
+    @PostMapping("/summary-to-doctor")
+    public String summaryToDoctor(Model model, String email){
+        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+        model.addAttribute("user", userEntity);
+        mailService.sendMailWithAttachment(userEntity, email);
+        model.addAttribute("send",true);
+        return "summary";
+    }
 }

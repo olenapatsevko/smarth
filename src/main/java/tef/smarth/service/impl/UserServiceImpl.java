@@ -63,8 +63,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserEntity updateCurrentUser(UserEntity userEntity){
-        UserEntity currentUser = obtainCurrentPrincipleUser();
-
+        UserEntity currentUser1 = obtainCurrentPrincipleUser();
+        UserEntity currentUser = userRepository.findByUsername(currentUser1.getUsername());
         if (userEntity.equals(currentUser)){
             return currentUser;
         }
@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
         if (!userEntity.getUsername().equals(currentUser.getUsername())){
             currentUser.setUsername(userEntity.getUsername());
         }
-        if (!bCryptPasswordEncoder.encode(userEntity.getPassword()).equals(currentUser.getEmail())&& !userEntity.getPassword().isBlank() ){
+        if (!userEntity.getPassword().isBlank() && !bCryptPasswordEncoder.encode(userEntity.getPassword()).equals(currentUser.getPassword())){
             currentUser.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword()));
         }
         if (!userEntity.getBirthday().equals(currentUser.getBirthday())){

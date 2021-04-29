@@ -29,18 +29,21 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    public void sendMailWithAttachment(UserEntity user) {
+    public void sendMailWithAttachment(UserEntity user, String email) {
         try {
-            emailSender.send(createMailForUser(user));
+            emailSender.send(createMailForUser(user, email));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private SimpleMailMessage createMailForUser(UserEntity userEntity) {
+    private SimpleMailMessage createMailForUser(UserEntity userEntity, String email) {
         SimpleMailMessage message = new SimpleMailMessage();
+        if (email == null) {
+            email = userEntity.getEmail();
+        }
         message.setFrom(from);
-        message.setTo(userEntity.getEmail());
+        message.setTo(email);
         message.setSubject("Smarth summary from " + getFormattedCurrentDate());
         message.setText(MessageFormat.format("{0} {1} \nborn: {2} \nsex: {3}\nhas such records and calculations {4}",
                 userEntity.getFirstName(),

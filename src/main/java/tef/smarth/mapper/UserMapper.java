@@ -1,6 +1,8 @@
 package tef.smarth.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.model.User;
 

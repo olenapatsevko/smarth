@@ -4,5 +4,5 @@ import tef.smarth.entity.UserEntity;
 
 
 public interface MailService {
-    void sendMailWithAttachment( UserEntity user) ;
+    void sendMailWithAttachment( UserEntity user, String email) ;
 }

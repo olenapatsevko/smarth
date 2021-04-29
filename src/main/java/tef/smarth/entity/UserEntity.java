@@ -14,8 +14,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
 @Setter
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(exclude ={"records","calculations","diseases" } )
+@ToString(exclude ={"records","calculations","diseases"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -82,8 +82,6 @@ public class UserEntity {
     @Column(name = "calculations")
     @OneToMany(mappedBy = "user")
     private Set<CalculationEntity> calculations;
-    @Transient
-    private String passwordConfirm;
 
     @ManyToMany
     @JoinTable(name = "users_has_roles",
