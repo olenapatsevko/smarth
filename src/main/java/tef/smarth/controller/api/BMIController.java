@@ -23,22 +23,22 @@ public class BMIController {
     @Autowired
     private BMIClient bmiClient;
 
-    @PostMapping(value = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/bmi", produces = MediaType.APPLICATION_JSON_VALUE)
     public BMIResponse postBMI(@RequestBody MailRequest mailRequest) {
         UserEntity userEntity = userRepository.findByEmail(mailRequest.getEmail());
         return bmiClient.post(BMIRequest.builder()
                 .age(String.valueOf(DateUtil.calculateAge(userEntity.getBirthday().toLocalDate())))
                 .height(BMIParameter.builder()
-                        .value(userEntity.getHeight() + ".00")
+                        .value(userEntity.getHeight() + "")
                         .unit("cm")
                         .build())
                 .sex(userEntity.getSex().equals(Sex.MALE) ? "m" : "f")
                 .weight(BMIParameter.builder()
-                        .value(userEntity.getWeight() + ".00")
+                        .value(userEntity.getWeight() + "")
                         .unit("kg")
                         .build())
-                .hip(userEntity.getHip() + ".00")
-                .waist(userEntity.getWaist() + ".00")
+                .hip(userEntity.getHip() + "")
+                .waist(userEntity.getWaist() + "")
                 .build(), userEntity);
     }
 }
