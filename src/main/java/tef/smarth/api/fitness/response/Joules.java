@@ -2,6 +2,8 @@ package tef.smarth.api.fitness.response;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -9,8 +11,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BodyMassIndex{
+public class Joules{
     public double value;
-    public String conclusion;
-    public String unit;
+    public List<String> unit;
 }

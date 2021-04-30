@@ -9,8 +9,8 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BodyMassIndex{
-    public double value;
-    public String conclusion;
-    public String unit;
+public class Rs{
+    public String formulaName;
+    public Calories calories;
+    public Joules joules;
 }

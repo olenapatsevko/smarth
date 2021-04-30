@@ -1,7 +1,16 @@
 package tef.smarth.api.fitness.response;
 
+import lombok.*;
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BasalMetabolicRate{
-    public FormulaNamesCaloriesJoles hb;
-    public FormulaNamesCaloriesJoles rs;
-    public FormulaNamesCaloriesJoles msj;
+    public Hb hb;
+    public Rs rs;
+    public Msj msj;
 }

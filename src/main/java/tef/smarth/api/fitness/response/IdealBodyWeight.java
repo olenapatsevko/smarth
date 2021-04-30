@@ -1,10 +1,19 @@
 package tef.smarth.api.fitness.response;
 
+import lombok.*;
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class IdealBodyWeight{
-    public Template peterson;
-    public Template lorentz;
-    public Template hamwi;
-    public Template devine;
-    public Template robinson;
-    public Template miller;
+    public Peterson peterson;
+    public Lorentz lorentz;
+    public Hamwi hamwi;
+    public Devine devine;
+    public Robinson robinson;
+    public Miller miller;
 }

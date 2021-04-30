@@ -1,10 +1,19 @@
 package tef.smarth.api.fitness.response;
 
+import lombok.*;
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TotalDailyEnergyExpenditure{
-    public TemplateLarge bmi;
-    public TemplateLarge dod;
-    public TemplateLarge ymca;
-    public FormulaNamesCaloriesJoles hb;
-    public FormulaNamesCaloriesJoles rs;
-    public FormulaNamesCaloriesJoles msj;
+    public Bmi bmi;
+    public Dod dod;
+    public Ymca ymca;
+    public Hb hb;
+    public Rs rs;
+    public Msj msj;
 }
