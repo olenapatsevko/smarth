@@ -135,6 +135,18 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="passwordConfirm" class="col-md-4 col-form-label text-md-right"
+                                       th:text="#{placeholder.password.confirm}">
+                                </label>
+                                <div class="col-md-6">
+                                    <input th:field="*{passwordConfirm}" type="text" id="passwordConfirm" class="form-control"
+                                           name="passwordConfirm" required
+                                           th:placeholder="#{placeholder.password.confirm}">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
                                 <label for="sex" class="col-md-4 col-form-label text-md-right"
                                        th:text="#{placeholder.sex}"></label>
                                 <div class="col-md-6">

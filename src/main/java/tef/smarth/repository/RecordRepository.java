@@ -14,4 +14,6 @@ public interface RecordRepository extends CrudRepository<RecordEntity, Integer> 
     List<RecordEntity> findAllByUserId(Integer id);
 
     RecordEntity findAnyByParameterTypeAndUser(ParameterType parameterType, UserEntity userEntity);
+
+    RecordEntity findTopByParameterTypeAndUserOrderByDateDesc(ParameterType parameterType, UserEntity userEntity);
 }

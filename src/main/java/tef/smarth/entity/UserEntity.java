@@ -88,4 +88,7 @@ public class UserEntity {
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_role"))
     private Set<RoleEntity> roles = new HashSet<>();
+
+    @Transient
+    private String passwordConfirm;
 }

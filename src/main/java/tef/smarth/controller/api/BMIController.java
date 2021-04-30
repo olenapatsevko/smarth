@@ -11,6 +11,7 @@ import tef.smarth.dto.MailRequest;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.entity.enums.Sex;
 import tef.smarth.repository.UserRepository;
+import tef.smarth.service.api.BMIService;
 import tef.smarth.utils.DateUtil;
 
 @RestController
@@ -23,22 +24,12 @@ public class BMIController {
     @Autowired
     private BMIClient bmiClient;
 
+    @Autowired
+    private BMIService bmiService;
+
     @PostMapping(value = "/bmi", produces = MediaType.APPLICATION_JSON_VALUE)
     public BMIResponse postBMI(@RequestBody MailRequest mailRequest) {
         UserEntity userEntity = userRepository.findByEmail(mailRequest.getEmail());
-        return bmiClient.post(BMIRequest.builder()
-                .age(String.valueOf(DateUtil.calculateAge(userEntity.getBirthday().toLocalDate())))
-                .height(BMIParameter.builder()
-                        .value(userEntity.getHeight() + "")
-                        .unit("cm")
-                        .build())
-                .sex(userEntity.getSex().equals(Sex.MALE) ? "m" : "f")
-                .weight(BMIParameter.builder()
-                        .value(userEntity.getWeight() + "")
-                        .unit("kg")
-                        .build())
-                .hip(userEntity.getHip() + "")
-                .waist(userEntity.getWaist() + "")
-                .build(), userEntity);
+        return bmiService.getBMI(userEntity);
     }
 }
