@@ -3,6 +3,7 @@ package tef.smarth.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tef.smarth.entity.RecordEntity;
+import tef.smarth.entity.UserEntity;
 import tef.smarth.entity.enums.ParameterType;
 import tef.smarth.entity.enums.RecordType;
 import tef.smarth.model.AddDataModel;
@@ -12,6 +13,8 @@ import tef.smarth.service.UserService;
 
 import java.sql.Date;
 import java.util.Objects;
+
+import static java.lang.String.valueOf;
 
 @Service
 public class RecordServiceImpl implements RecordService {
@@ -73,4 +76,29 @@ public class RecordServiceImpl implements RecordService {
                     .build());
         }
     }
+
+    @Override
+    public String getBMIHip(UserEntity userEntity) {
+        var recordEntity = recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(ParameterType.HIP, userEntity);
+        return recordEntity != null ? recordEntity.getValue() : valueOf(userEntity.getHip());
+    }
+
+    @Override
+    public String getBMIWaist(UserEntity userEntity) {
+        var recordEntity = recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(ParameterType.WAIST, userEntity);
+        return recordEntity != null ? recordEntity.getValue() : valueOf(userEntity.getWaist());
+    }
+
+    @Override
+    public String getBMIHeight(UserEntity userEntity) {
+        var recordEntity = recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(ParameterType.HEIGHT, userEntity);
+        return recordEntity != null ? recordEntity.getValue() : valueOf(userEntity.getHeight());
+    }
+
+    @Override
+    public String getBMIWeight(UserEntity userEntity) {
+        var recordEntity = recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(ParameterType.WEIGHT, userEntity);
+        return recordEntity != null ? recordEntity.getValue() : valueOf(userEntity.getWeight());
+    }
+
 }

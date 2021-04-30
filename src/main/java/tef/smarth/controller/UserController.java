@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.mapper.UserMapper;
 import tef.smarth.model.AddDataModel;
+import tef.smarth.model.Fitness;
 import tef.smarth.model.User;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.service.*;
+import tef.smarth.service.api.BMIService;
+import tef.smarth.service.api.FitnessService;
 import tef.smarth.utils.RecordValidator;
 import tef.smarth.utils.UserValidator;
 
@@ -52,6 +55,12 @@ public class UserController {
     @Autowired
     private RecordValidator recordValidator;
 
+    @Autowired
+    private FitnessService fitnessService;
+
+    @Autowired
+    private BMIService bmiService;
+
     @GetMapping("/lexigram")
     public String getlexigram(Model model) {
         return "lexigram";
@@ -68,20 +77,33 @@ public class UserController {
     }
 
     @GetMapping("/bmi")
-    public String getBmi(Model model) {
+    public String getBMI(Model model){
+        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+        model.addAttribute("user", userEntity);
+        model.addAttribute("bmi", bmiService.getBMI(userEntity));
         return "bmi";
     }
 
     @GetMapping("/fitness")
-    public String getfitness(Model model) {
+    public String getFitness(Model model) {
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("fitnessForm", new Fitness());
         return "fitness";
+    }
+
+    @PostMapping("/fitness")
+    public String postFitness(Model model, @ModelAttribute("fitnessForm") Fitness fitness) {
+        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+        model.addAttribute("fitnessResult", fitnessService.getFitnessPlan(userEntity, fitness));
+        model.addAttribute("user", userEntity);
+        return "fitness-result";
     }
 
     @GetMapping("/recommendations")
     public String getRecommendations(Model model) {
         Random rand = new Random();
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
-        model.addAttribute("recommendations", recommendationService.getRecommendations(rand.nextInt(30)) );
+        model.addAttribute("recommendations", recommendationService.getRecommendations(rand.nextInt(30)));
         return "recommendations";
     }
 

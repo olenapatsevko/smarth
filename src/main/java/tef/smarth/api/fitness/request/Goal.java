@@ -16,7 +16,7 @@ public enum Goal {
         return value;
     }
 
-    private String value;
+    public String value;
 
     Goal(String name) {
         this.value = name;

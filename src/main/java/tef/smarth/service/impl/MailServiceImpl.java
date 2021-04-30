@@ -29,6 +29,7 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private JavaMailSender emailSender;
 
+    @Override
     public void sendMailWithAttachment(UserEntity user, String email) {
         try {
             emailSender.send(createMailForUser(user, email));

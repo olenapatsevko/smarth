@@ -10,7 +10,7 @@ public enum Exercise {
     HEAVY("heavy"),
     VERYHEAVY("veryheavy");
 
-    private String name;
+    public String name;
 
     Exercise(String name) {
         this.name = name;

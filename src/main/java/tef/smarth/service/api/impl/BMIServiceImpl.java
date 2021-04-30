@@ -11,6 +11,7 @@ import tef.smarth.entity.enums.ParameterType;
 import tef.smarth.entity.enums.Sex;
 import tef.smarth.repository.RecordRepository;
 import tef.smarth.repository.UserRepository;
+import tef.smarth.service.RecordService;
 import tef.smarth.service.api.BMIService;
 import tef.smarth.utils.DateUtil;
 
@@ -28,6 +29,9 @@ public class BMIServiceImpl implements BMIService {
     @Autowired
     private BMIClient bmiClient;
 
+    @Autowired
+    private RecordService recordService;
+
 
     @Override
     public BMIResponse getBMI(UserEntity userEntity1) {
@@ -36,40 +40,16 @@ public class BMIServiceImpl implements BMIService {
         return bmiClient.post(BMIRequest.builder()
                 .age(valueOf(DateUtil.calculateAge(userEntity.getBirthday().toLocalDate())))
                 .height(BMIParameter.builder()
-                        .value(getBMIHeight(userEntity))
+                        .value(recordService.getBMIHeight(userEntity))
                         .unit("cm")
                         .build())
                 .sex(userEntity.getSex().equals(Sex.MALE) ? "m" : "f")
                 .weight(BMIParameter.builder()
-                        .value(getBMIWeight(userEntity))
+                        .value(recordService.getBMIWeight(userEntity))
                         .unit("kg")
                         .build())
-                .hip(getBMIHip(userEntity))
-                .waist(getBMIWaist(userEntity))
+                .hip(recordService.getBMIHip(userEntity))
+                .waist(recordService.getBMIWaist(userEntity))
                 .build(), userEntity);
-
-
     }
-
-    private String getBMIHip(UserEntity userEntity) {
-        var recordEntity = recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(ParameterType.HIP, userEntity);
-        return recordEntity != null ? recordEntity.getValue() : valueOf(userEntity.getWeight());
-    }
-
-    private String getBMIWaist(UserEntity userEntity) {
-        var recordEntity = recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(ParameterType.WAIST, userEntity);
-        return recordEntity != null ? recordEntity.getValue() : valueOf(userEntity.getWeight());
-    }
-
-    private String getBMIHeight(UserEntity userEntity) {
-        var recordEntity = recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(ParameterType.HEIGHT, userEntity);
-        return recordEntity != null ? recordEntity.getValue() : valueOf(userEntity.getWeight());
-    }
-
-    private String getBMIWeight(UserEntity userEntity) {
-        var recordEntity = recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(ParameterType.WEIGHT, userEntity);
-        return recordEntity != null ? recordEntity.getValue() : valueOf(userEntity.getWeight());
-    }
-
-
 }
