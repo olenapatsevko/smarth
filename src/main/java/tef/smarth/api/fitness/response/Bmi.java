@@ -2,6 +2,8 @@ package tef.smarth.api.fitness.response;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @EqualsAndHashCode
