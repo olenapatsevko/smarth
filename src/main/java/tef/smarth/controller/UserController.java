@@ -61,18 +61,22 @@ public class UserController {
     @Autowired
     private BMIService bmiService;
 
-    @GetMapping("/lexigram")
+    @GetMapping("/analyser")
     public String getlexigram(Model model) {
-        return "lexigram";
+        model.addAttribute("user",  userService.obtainCurrentPrincipleUser());
+        return "analyser";
     }
 
-    @GetMapping("/spoon")
+    @GetMapping("/nutrition")
     public String getSpoon(Model model) {
-        return "spoony";
+        model.addAttribute("user",  userService.obtainCurrentPrincipleUser());
+        return "nutrition";
     }
 
     @GetMapping("/covid")
     public String getCovid(Model model) {
+
+        model.addAttribute("user",  userService.obtainCurrentPrincipleUser());
         return "covid";
     }
 
@@ -110,6 +114,7 @@ public class UserController {
     @GetMapping("/profile-data")
     public String personalCabinet(Model model) {
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("userUpdate", userService.obtainCurrentPrincipleUser());
         return "profile-data";
     }
 

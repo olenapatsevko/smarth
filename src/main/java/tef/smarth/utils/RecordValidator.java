@@ -51,7 +51,7 @@ public class RecordValidator implements Validator {
         checkField(doublePredicate, "GGT", "validation.GGT", addDataModel.getGGT(), errors);
         checkField(doublePredicate, "LDH", "validation.LDH", addDataModel.getLDH(), errors);
         checkField(doublePredicate, "CRP", "validation.CRP", addDataModel.getCRP(), errors);
-        checkField(doublePredicate, "alkalinePhosphatase", "validation.alkalinePhosphatase;", addDataModel.getAlkalinePhosphatase(), errors);
+        checkField(doublePredicate, "alkalinePhosphatase", "validation.alkalinePhosphatase", addDataModel.getAlkalinePhosphatase(), errors);
         checkField(doublePredicate, "ALT", "validation.ALT", addDataModel.getALT(), errors);
         checkField(doublePredicate, "AST", "validation.AST", addDataModel.getAST(), errors);
         checkField(doublePredicate, "amylase", "validation.amylase", addDataModel.getAmylase(), errors);
