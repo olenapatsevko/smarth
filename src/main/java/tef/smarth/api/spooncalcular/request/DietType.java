@@ -4,7 +4,7 @@ public enum DietType {
      Gluten_Free("Gluten Free", "Eliminating gluten means avoiding wheat, barley, rye, and other gluten-containing grains and foods made from them (or that may have been cross contaminated)."),
      Ketogenic("Ketogenic", "The keto diet is based more on the ratio of fat, protein, and carbs in the diet rather than specific ingredients. Generally speaking, high fat, protein-rich foods are acceptable and high carbohydrate foods are not."),
      Vegetarian("Vegetarian", " No ingredients may contain meat or meat by-products, such as bones or gelatin."),
-     Lacto_Vegetarian("Lacto_Vegetarian", "All ingredients must be vegetarian and none of the ingredients can be or contain egg."),
+     Lacto_Vegetarian("Lacto-Vegetarian", "All ingredients must be vegetarian and none of the ingredients can be or contain egg."),
      Ovo_Vegetarian("Ovo-Vegetarian", "All ingredients must be vegetarian and none of the ingredients can be or contain dairy."),
      Vegan("Vegan", "No ingredients may contain meat or meat by-products, such as bones or gelatin, nor may they contain eggs, dairy, or honey."),
      Pescetarian("Pescetarian", "Everything is allowed except meat and meat by-products - some pescetarians eat eggs and dairy, some do not."),

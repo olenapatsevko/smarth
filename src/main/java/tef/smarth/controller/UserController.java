@@ -80,7 +80,7 @@ public class UserController {
     public String getBMI(Model model){
         UserEntity userEntity = userService.obtainCurrentPrincipleUser();
         model.addAttribute("user", userEntity);
-        model.addAttribute("bmi", bmiService.getBMI(userEntity));
+        model.addAttribute("bmiResult", bmiService.getBMI(userEntity));
         return "bmi";
     }
 

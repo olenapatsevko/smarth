@@ -33,9 +33,143 @@
 <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
      data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
 
-    <div th:replace="header :: header" > </div>
-    <div th:replace="aside :: aside" > </div>
+    <div th:replace="header :: header"></div>
+    <div th:replace="aside :: aside"></div>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="#{additional.bmi}"></h4>
+                            <!--/*@thymesVar id="bmiResult" type="tef.smarth.api.bmi.response.BMIResponse"*/-->
+                            <form th:object="${bmiResult}" th:action="@{#}" method="post">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="height" th:text="#{height}+' '+#{cm}"></label>
+                                                <input type="text" id="height" readonly name="height"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.height.cm}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="weight" th:text="#{weight}+' '+#{kg}"></label>
+                                                <input type="text" id="weight" readonly name="weight"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.weight.kg}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label  class="text-danger" for="ideal" th:text="#{ideal.weight}"></label>
+                                                <input type="text" id="ideal" readonly name="ideal"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.ideal_weight}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="surface" th:text="#{surface.area}"></label>
+                                                <input type="text" id="surface" readonly name="surface"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.surface_area}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <h3 class="text-primary"><label for="ponderal" th:text="#{ponderal.index}"></label></h3>
+                                                <input type="text" id="ponderal" readonly name="ponderal"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.ponderal_index}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <h3><label for="bmr" th:text="#{bmr}"></label></h3>
+                                                <input type="text" id="bmr" readonly name="bmr"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.bmr.value}">
+                                            </div>
+                                        </div>
 
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <h3 class="text-primary"><label for="bmi" th:text="#{bmi}"></label></h3>
+                                                <input type="text" id="bmi" readonly name="bmi"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.bmi.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="bmi.prime" th:text="#{bmi.prime}"></label>
+                                                <input type="text" id="bmi.prime" readonly name="bmi.prime"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.bmi.prime}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:class="text-warning" for="bmi.status" th:text="#{status}"></label>
+                                                <input type="text" id="bmi.status" readonly name="bmi.status"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.bmi.status}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="text-danger" for="bmi.risk" th:text="#{risk}"></label>
+                                                <input type="text" id="bmi.risk" readonly name="bmi.risk"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.bmi.risk}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <h3 class="text-primary"><label for="whr" th:text="#{whr}"></label></h3>
+                                                <input type="text" id="whr" readonly name="whr"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.whr.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label  class="text-warning" for="whr.status" th:text="#{status}"></label>
+                                                <input type="text" id="whr.status" readonly name="whr.status"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.whr.status}">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <h3 class="text-primary"><label for="whtr" th:text="#{whtr}"></label></h3>
+                                                <input type="text" id="whtr" readonly name="whtr"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.whtr.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="text-warning" for="whtr.status" th:text="#{status}"></label>
+                                                <input type="text" id="whtr.status" readonly name="whtr.status"
+                                                       class="form-control"
+                                                       th:value="${bmiResult.whtr.status}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
