@@ -9,8 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import tef.smarth.api.spooncalcular.request.DietType;
-import tef.smarth.api.spooncalcular.response.MenuResponse;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.mapper.UserMapper;
 import tef.smarth.model.AddDataModel;
@@ -102,6 +102,13 @@ public class UserController {
         model.addAttribute("user", userEntity);
         model.addAttribute("bmiResult", bmiService.getBMI(userEntity));
         return "bmi";
+    }
+
+    @GetMapping("/meal")
+    public String getMeal(Model model, @RequestParam("id") int id) {
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("meal", spoonService.getRecipe(id));
+        return "meal";
     }
 
     @GetMapping("/fitness")

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import tef.smarth.api.spooncalcular.request.MenuRequest;
+import tef.smarth.api.spooncalcular.request.TimeFrame;
 import tef.smarth.api.spooncalcular.response.MenuResponse;
 import tef.smarth.api.spooncalcular.response.SpoonRecipeSummary;
 import tef.smarth.model.Menu;
@@ -29,7 +30,7 @@ public class SpoonCalcularClient {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL)
                 .queryParam("apiKey", SECURITY_KEY)
-                .queryParam("timeFrame", request.getTime().getCode())
+                .queryParam("timeFrame", TimeFrame.DAY.getCode())
                 .queryParam("diet", request.getDiet().getName().toLowerCase(Locale.ROOT))
                 .queryParam("targetCalories", request.getTargetCalories());
 
