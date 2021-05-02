@@ -12,13 +12,13 @@ public enum Goal {
     NORMAL_BULKING("normal bulking"),
     AGGRESSIVE_BULKING("aggressive bulking");
 
-    public String getValue() {
-        return value;
+    public String getDisplayValue() {
+        return displayValue;
     }
 
-    public String value;
+    public String displayValue;
 
-    Goal(String name) {
-        this.value = name;
+    Goal(String displayValue) {
+        this.displayValue = displayValue;
     }
 }

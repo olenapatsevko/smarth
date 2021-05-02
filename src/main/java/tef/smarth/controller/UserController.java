@@ -9,15 +9,19 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import tef.smarth.api.spooncalcular.request.DietType;
+import tef.smarth.api.spooncalcular.response.MenuResponse;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.mapper.UserMapper;
 import tef.smarth.model.AddDataModel;
 import tef.smarth.model.Fitness;
+import tef.smarth.model.Menu;
 import tef.smarth.model.User;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.service.*;
 import tef.smarth.service.api.BMIService;
 import tef.smarth.service.api.FitnessService;
+import tef.smarth.service.api.SpoonService;
 import tef.smarth.utils.RecordValidator;
 import tef.smarth.utils.UserValidator;
 
@@ -61,6 +65,9 @@ public class UserController {
     @Autowired
     private BMIService bmiService;
 
+    @Autowired
+    private SpoonService spoonService;
+
     @GetMapping("/analyser")
     public String getlexigram(Model model) {
         model.addAttribute("user",  userService.obtainCurrentPrincipleUser());
@@ -69,19 +76,28 @@ public class UserController {
 
     @GetMapping("/nutrition")
     public String getSpoon(Model model) {
-        model.addAttribute("user",  userService.obtainCurrentPrincipleUser());
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("diets", DietType.values());
+        model.addAttribute("menuForm", new Menu());
         return "nutrition";
+    }
+
+    @PostMapping("/nutrition")
+    public String getSpoon(Model model, @ModelAttribute("menuForm") Menu menu) {
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("menu", spoonService.getMenu(menu));
+        return "nutrition-result";
     }
 
     @GetMapping("/covid")
     public String getCovid(Model model) {
 
-        model.addAttribute("user",  userService.obtainCurrentPrincipleUser());
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         return "covid";
     }
 
     @GetMapping("/bmi")
-    public String getBMI(Model model){
+    public String getBMI(Model model) {
         UserEntity userEntity = userService.obtainCurrentPrincipleUser();
         model.addAttribute("user", userEntity);
         model.addAttribute("bmiResult", bmiService.getBMI(userEntity));

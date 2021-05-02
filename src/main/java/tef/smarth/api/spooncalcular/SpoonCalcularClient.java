@@ -5,12 +5,10 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import tef.smarth.api.spooncalcular.request.DietType;
-import tef.smarth.api.spooncalcular.request.GenerateMenuRequest;
-import tef.smarth.api.spooncalcular.request.TimeFrame;
-import tef.smarth.api.spooncalcular.response.GenerateMenuResponse;
-import tef.smarth.api.spooncalcular.response.Summary;
-import tef.smarth.entity.UserEntity;
+import tef.smarth.api.spooncalcular.request.MenuRequest;
+import tef.smarth.api.spooncalcular.response.MenuResponse;
+import tef.smarth.api.spooncalcular.response.SpoonRecipeSummary;
+import tef.smarth.model.Menu;
 
 import java.util.Locale;
 import java.util.Map;
@@ -23,7 +21,7 @@ public class SpoonCalcularClient {
     static final String SECURITY_KEY = "a779e9aaa0fd400fa13a9994ff7f7091";
     static final String URL_2= "https://api.spoonacular.com/recipes/{id}/summary";
 
-    public GenerateMenuResponse getMenu(GenerateMenuRequest request, UserEntity userEntity) {
+    public MenuResponse getMenu(Menu request) {
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -31,36 +29,30 @@ public class SpoonCalcularClient {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL)
                 .queryParam("apiKey", SECURITY_KEY)
-                .queryParam("timeFrame", TimeFrame.DAY.getCode())
-                .queryParam("diet", DietType.Vegan.getName().toLowerCase(Locale.ROOT))
-                .queryParam("targetCalories", 20000);
-                //.queryParam("exclude", "onion,fish");
+                .queryParam("timeFrame", request.getTime().getCode())
+                .queryParam("diet", request.getDiet().getName().toLowerCase(Locale.ROOT))
+                .queryParam("targetCalories", request.getTargetCalories());
 
         headers.add("x-rapidapi-key", SECURITY_KEY);
-        //    headers.add("x-rapidapi-host", "bmi.p.rapidapi.com");
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<GenerateMenuRequest> requestBody = new HttpEntity<>(headers);
+        HttpEntity<MenuRequest> requestBody = new HttpEntity<>(headers);
 
-        ResponseEntity<GenerateMenuResponse> response
-                = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, requestBody, GenerateMenuResponse.class);
+        ResponseEntity<MenuResponse> response
+                = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, requestBody, MenuResponse.class);
         return response.getBody();
     }
 
-    public Summary getRecipe( int id) {
-
+    public SpoonRecipeSummary getRecipe(int id) {
         RestTemplate restTemplate = new RestTemplate();
-
         HttpHeaders headers = new HttpHeaders();
-
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL_2)
                 .queryParam("apiKey", SECURITY_KEY)
-                .uriVariables(Map.of("id",474380));
-
+                .uriVariables(Map.of("id",id));
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<GenerateMenuRequest> requestBody = new HttpEntity<>(headers);
+        HttpEntity<MenuRequest> requestBody = new HttpEntity<>(headers);
 
-        ResponseEntity<Summary> response
-                = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, requestBody, Summary.class);
+        ResponseEntity<SpoonRecipeSummary> response
+                = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, requestBody, SpoonRecipeSummary.class);
         return response.getBody();
     }
 }

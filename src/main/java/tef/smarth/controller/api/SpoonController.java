@@ -8,13 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tef.smarth.api.spooncalcular.SpoonCalcularClient;
 import tef.smarth.api.spooncalcular.request.DietType;
-import tef.smarth.api.spooncalcular.request.GenerateMenuRequest;
 import tef.smarth.api.spooncalcular.request.TimeFrame;
-import tef.smarth.api.spooncalcular.response.GenerateMenuResponse;
-import tef.smarth.api.spooncalcular.response.Summary;
-import tef.smarth.entity.UserEntity;
-
-import java.util.Locale;
+import tef.smarth.api.spooncalcular.response.MenuResponse;
+import tef.smarth.api.spooncalcular.response.SpoonRecipeSummary;
+import tef.smarth.model.Menu;
 
 @RestController
 @RequestMapping("/api")
@@ -24,17 +21,16 @@ public class SpoonController {
     private SpoonCalcularClient covidClient;
 
     @GetMapping(value = "/menu", produces = MediaType.APPLICATION_JSON_VALUE)
-    public GenerateMenuResponse getMenu(Model model) {
-        return covidClient.getMenu(GenerateMenuRequest.builder()
-                .diet(DietType.Ketogenic.getName().toLowerCase(Locale.ROOT))
+    public MenuResponse getMenu(Model model) {
+        return covidClient.getMenu(Menu.builder()
+                .diet(DietType.Ketogenic)
                 .targetCalories(200)
-                .timeFrame(TimeFrame.DAY.name())
-                .build(), new UserEntity()
+                .time(TimeFrame.DAY)
+                .build()
         );
     }
-
     @GetMapping(value = "/summary", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Summary getSummary(Model model) {
+    public SpoonRecipeSummary getSummary(Model model) {
         return covidClient.getRecipe(111);
     }
 }

@@ -1,3 +1,4 @@
+
 package tef.smarth.api.spooncalcular.response;
 
 import lombok.AllArgsConstructor;
@@ -5,16 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class GenerateMenuResponse {
+@AllArgsConstructor
+@Builder
+public class SpoonRecipeSummary {
 
+    private Long id;
 
-    private List<Meal> meals;
+    private String summary;
 
-    private Nutrients nutrients;
+    private String title;
 }

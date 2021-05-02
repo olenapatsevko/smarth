@@ -92,7 +92,7 @@
                                                 <select th:field="*{goal}" id="goal" name="bloodGroup"
                                                         class="custom-select mr-sm-2">
                                                     <option th:each="g : ${T(tef.smarth.api.fitness.request.Goal).values()}"
-                                                            th:value="${g}" th:text="${g.value}"></option>
+                                                            th:value="${g}" th:text="${g.displayValue}"></option>
                                                 </select>
                                             </div>
                                         </div>

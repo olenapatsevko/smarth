@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonSerializableSchema
-public class GenerateMenuRequest extends SpoonRequest{
+public class MenuRequest extends SpoonRequest{
     String timeFrame;
     double targetCalories;
     String diet;

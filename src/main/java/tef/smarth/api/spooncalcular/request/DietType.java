@@ -12,10 +12,10 @@ public enum DietType {
      Primal("Primal", "Very similar to Paleo, except dairy is allowed - think raw and full fat milk, butter, ghee, etc."),
      Whole30("Whole30", "Allowed ingredients include meat, fish/seafood, eggs, vegetables, fresh fruit, coconut oil, olive oil, small amounts of dried fruit and nuts/seeds. Ingredients not allowed include added sweeteners (natural and artificial, except small amounts of fruit juice), dairy (except clarified butter or ghee), alcohol, grains, legumes (except green beans, sugar snap peas, and snow peas), and food additives, such as carrageenan, MSG, and sulfites.");
 
-     String description;
      String name;
+     String description;
 
-   DietType(String description, String name) {
+   DietType(String name, String description) {
          this.description = description;
          this.name = name;
      }
