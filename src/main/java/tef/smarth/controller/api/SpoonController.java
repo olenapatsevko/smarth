@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tef.smarth.api.spooncalcular.SpoonCalcularClient;
 import tef.smarth.api.spooncalcular.request.DietType;
+import tef.smarth.api.spooncalcular.request.IngredientsRequest;
 import tef.smarth.api.spooncalcular.request.TimeFrame;
 import tef.smarth.api.spooncalcular.response.MenuResponse;
 import tef.smarth.api.spooncalcular.response.SpoonRecipeSummary;
 import tef.smarth.model.Menu;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -29,8 +32,15 @@ public class SpoonController {
                 .build()
         );
     }
+
     @GetMapping(value = "/summary", produces = MediaType.APPLICATION_JSON_VALUE)
     public SpoonRecipeSummary getSummary(Model model) {
         return covidClient.getRecipe(111);
     }
+
+    @GetMapping(value = "/recipes", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object getRecipes() {
+        return covidClient.getRecipesByIngredients(IngredientsRequest.builder().number(3).ingredients(List.of("apple", "orange")).build());
+    }
 }
+

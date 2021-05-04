@@ -91,4 +91,15 @@ public class UserEntity {
 
     @Transient
     private String passwordConfirm;
+
+    @PrePersist
+    void preInsert() {
+
+        if (this.roles.isEmpty()) {
+            RoleEntity role = new RoleEntity();
+            role.setId(1);
+            role.setName("CLIENT");
+            roles.add(role);
+        }
+    }
 }

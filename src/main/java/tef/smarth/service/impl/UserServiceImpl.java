@@ -9,8 +9,6 @@ import tef.smarth.entity.UserEntity;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.service.UserService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -39,7 +39,7 @@ public class MailServiceImpl implements MailService {
     }
 
     private SimpleMailMessage createMailForUser(UserEntity userEntity, String email) {
-        SimpleMailMessage message = new SimpleMailMessage();
+        var message = new SimpleMailMessage();
         if (email == null) {
             email = userEntity.getEmail();
         }
@@ -58,8 +58,12 @@ public class MailServiceImpl implements MailService {
 
     private String getCalculations(UserEntity userEntity) {
         List<RecordEntity> records = recordRepository.findAllByUserId(userEntity.getId());
-        StringBuilder result = new StringBuilder();
-        records.forEach(record -> result.append(MessageFormat.format("\n {0} {1} {2} {3}", record.getName(), record.getValue(), record.getMeasurement(), record.getDate().toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE))));
+        var result = new StringBuilder();
+        records.forEach(userRecord -> result.append(MessageFormat.format("\n {0} {1} {2} {3}",
+                userRecord.getName(),
+                userRecord.getValue(),
+                userRecord.getMeasurement(),
+                userRecord.getDate().toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE))));
         return result.toString();
     }
 }

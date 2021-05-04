@@ -32,7 +32,7 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     public List<RecommendationEntity> getRandomRecommendations(int count) {
-        Random rand = new Random();
+        var rand = new Random();
         List<RecommendationEntity> givenList = Lists.newArrayList(recommendationsRepository.findAll());
         List<RecommendationEntity> result = new ArrayList<>();
         for (int i = 0; i < count; i++) {

@@ -22,7 +22,7 @@ public class RegistrationValidator {
     private static final String EMAIL_PATTERN = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
     public boolean isValid(RegistrationRequest request) {
-        return validateFields(request) & validateEmail(request.getEmail());// & validateUserExists(request);
+        return validateFields(request) && validateEmail(request.getEmail());// & validateUserExists(request);
     }
 
     private boolean validateEmail(String email) {

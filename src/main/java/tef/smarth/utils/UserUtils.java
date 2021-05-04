@@ -5,6 +5,7 @@ import tef.smarth.entity.UserEntity;
 import tef.smarth.entity.enums.Sex;
 
 public class UserUtils {
+    private UserUtils(){}
 
     public static UserEntity getUserEntity(RegistrationRequest request){
         return UserEntity.builder()

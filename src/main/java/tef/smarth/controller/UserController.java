@@ -8,12 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import tef.smarth.api.spooncalcular.request.DietType;
-import tef.smarth.entity.UserEntity;
+import tef.smarth.api.spooncalcular.request.IngredientsRequest;
 import tef.smarth.mapper.UserMapper;
-import tef.smarth.model.AddDataModel;
-import tef.smarth.model.Fitness;
-import tef.smarth.model.Menu;
-import tef.smarth.model.User;
+import tef.smarth.model.*;
 import tef.smarth.repository.UserRepository;
 import tef.smarth.service.*;
 import tef.smarth.service.api.BMIService;
@@ -24,10 +21,12 @@ import tef.smarth.utils.UserValidator;
 
 import java.util.Random;
 
-@RequestMapping("/client")
-@Controller()
+
+@Controller
 public class UserController {
 
+    public static final String ADD_DATA = "add-data";
+    public static final String PROFILE_DATA = "profile-data";
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
@@ -88,9 +87,17 @@ public class UserController {
     }
 
     @GetMapping("/nutrition-recipes")
-    public String getRecipe(Model model){
+    public String getRecipe(Model model) {
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("recipeForm", new IngredientsForm());
         return "nutrition-recipes";
+    }
+
+    @PostMapping("/nutrition-recipes")
+    public String getRecipeResult(Model model, @ModelAttribute("recipeForm") IngredientsForm recipeForm) {
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("recipes", "");
+        return "nutrition-recipes-result";
     }
 
     @GetMapping("/covid")
@@ -102,7 +109,7 @@ public class UserController {
 
     @GetMapping("/bmi")
     public String getBMI(Model model) {
-        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+        var userEntity = userService.obtainCurrentPrincipleUser();
         model.addAttribute("user", userEntity);
         model.addAttribute("bmiResult", bmiService.getBMI(userEntity));
         return "bmi";
@@ -124,7 +131,7 @@ public class UserController {
 
     @PostMapping("/fitness")
     public String postFitness(Model model, @ModelAttribute("fitnessForm") Fitness fitness) {
-        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+        var userEntity = userService.obtainCurrentPrincipleUser();
         model.addAttribute("fitnessResult", fitnessService.getFitnessPlan(userEntity, fitness));
         model.addAttribute("user", userEntity);
         return "fitness-result";
@@ -132,7 +139,7 @@ public class UserController {
 
     @GetMapping("/recommendations")
     public String getRecommendations(Model model) {
-        Random rand = new Random();
+        var rand = new Random();
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         model.addAttribute("recommendations", recommendationService.getRecommendations(rand.nextInt(30)));
         return "recommendations";
@@ -142,7 +149,7 @@ public class UserController {
     public String personalCabinet(Model model) {
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         model.addAttribute("userUpdate", userService.obtainCurrentPrincipleUser());
-        return "profile-data";
+        return PROFILE_DATA;
     }
 
     @GetMapping("/add-data")
@@ -150,7 +157,7 @@ public class UserController {
         model.addAttribute("addForm", new AddDataModel());
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         model.addAttribute("saved", false);
-        return "add-data";
+        return ADD_DATA;
     }
 
     @PostMapping("/add-data")
@@ -159,12 +166,12 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", userService.obtainCurrentPrincipleUser());
             logger.info("reg. form had errors. redirecting");
-           return "add-data";
+            return ADD_DATA;
         }
         recordService.saveRecords(addDataModel);
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         model.addAttribute("saved", true);
-        return "add-data";
+        return ADD_DATA;
     }
 
     @GetMapping("/medical-calculations")
@@ -175,7 +182,7 @@ public class UserController {
 
     @GetMapping("/summary")
     public String getSummary(Model model) {
-        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+        var userEntity = userService.obtainCurrentPrincipleUser();
         model.addAttribute("user", userEntity);
         mailService.sendMailWithAttachment(userEntity,null);
         model.addAttribute("send",false);
@@ -188,15 +195,15 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", userService.obtainCurrentPrincipleUser());
             logger.info("reg. form had errors. redirecting");
-            return "profile-data";
+            return PROFILE_DATA;
         }
         model.addAttribute("user", userMapper.convertToModel(userService.updateCurrentUser(userMapper.convertToEntity(user))));
-        return "profile-data";
+        return PROFILE_DATA;
     }
 
     @PostMapping("/summary-to-doctor")
     public String summaryToDoctor(Model model, String email){
-        UserEntity userEntity = userService.obtainCurrentPrincipleUser();
+        var userEntity = userService.obtainCurrentPrincipleUser();
         model.addAttribute("user", userEntity);
         mailService.sendMailWithAttachment(userEntity, email);
         model.addAttribute("send",true);
