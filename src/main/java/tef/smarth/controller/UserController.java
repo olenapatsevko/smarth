@@ -72,19 +72,25 @@ public class UserController {
         return "analyser";
     }
 
-    @GetMapping("/nutrition")
+    @GetMapping("/nutrition-plan")
     public String getSpoon(Model model) {
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         model.addAttribute("diets", DietType.values());
         model.addAttribute("menuForm", new Menu());
-        return "nutrition";
+        return "nutrition-plan";
     }
 
-    @PostMapping("/nutrition")
+    @PostMapping("/nutrition-plan")
     public String getSpoon(Model model, @ModelAttribute("menuForm") Menu menu) {
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         model.addAttribute("menu", spoonService.getMenu(menu));
         return "nutrition-result";
+    }
+
+    @GetMapping("/nutrition-recipes")
+    public String getRecipe(Model model){
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        return "nutrition-recipes";
     }
 
     @GetMapping("/covid")

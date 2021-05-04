@@ -5,6 +5,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import tef.smarth.api.spooncalcular.request.IngredientsRequest;
 import tef.smarth.api.spooncalcular.request.MenuRequest;
 import tef.smarth.api.spooncalcular.request.TimeFrame;
 import tef.smarth.api.spooncalcular.response.MenuResponse;
@@ -55,5 +56,9 @@ public class SpoonCalcularClient {
         ResponseEntity<SpoonRecipeSummary> response
                 = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, requestBody, SpoonRecipeSummary.class);
         return response.getBody();
+    }
+
+    public Object getRecipesByIngredients(IngredientsRequest request ){
+        return null;
     }
 }
