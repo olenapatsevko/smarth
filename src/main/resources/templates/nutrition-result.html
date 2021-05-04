@@ -65,7 +65,7 @@
                   </thead>
                   <tbody>
                   <tr th:each="meal : ${menu.meals}">
-                    <td><a th:href="'/meal?id='+${meal.id}" th:text="${meal.id}"></a></td>
+                    <td><a th:href="'/client/meal?id='+${meal.id}" th:text="${meal.id}"></a></td>
                     <td th:text="${meal.title}"></td>
                     <td th:text="${meal.servings}"></td>
                     <td th:text="${meal.readyInMinutes}"></td>

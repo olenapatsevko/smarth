@@ -55,11 +55,11 @@
                                         <p th:text="#{summary.text} + ' '+ ${user.email}"></p>
                                         <p class="lead">
                                             <a class="btn btn-primary btn-lg"
-                                               role="button" th:href="@{/personal-cabinet}"
+                                               role="button" th:href="@{/client/personal-cabinet}"
                                                th:text="#{summary.label.go.back}"></a>
                                         </p>
                                     </div>
-                                    <form th:action="@{/summary-to-doctor}" method="post">
+                                    <form th:action="@{/client/summary-to-doctor}" method="post">
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-md-12">

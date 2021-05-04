@@ -10,7 +10,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="sidebar-item"><a class="sidebar-link sidebar-link" th:href="@{/personal-cabinet}"
+                <li class="sidebar-item"><a class="sidebar-link sidebar-link" th:href="@{/client/personal-cabinet}"
                                             aria-expanded="false"><i data-feather="home"
                                                                      class="feather-icon"></i><span
                         class="hide-menu" th:text="#{menu.general.personal.cabinet}"></span></a></li>
@@ -18,32 +18,32 @@
                 <li class="nav-small-cap"><span class="hide-menu" th:text="#{menu.general.user}"></span></li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/profile-data}"
+                    <a class="sidebar-link" th:href="@{/client/profile-data}"
                        aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i>
                         <span class="hide-menu" th:text="#{menu.profile}"> </span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" th:href="@{/add-data}" aria-expanded="false">
+                    <a class="sidebar-link sidebar-link" th:href="@{/client/add-data}" aria-expanded="false">
                         <i data-feather="message-square" class="feather-icon"></i>
                         <span class="hide-menu" th:text="#{menu.add.data}"></span></a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" th:href="@{/medical-calculations}" aria-expanded="false">
+                    <a class="sidebar-link sidebar-link" th:href="@{/client/medical-calculations}" aria-expanded="false">
                         <i data-feather="calendar" class="feather-icon"></i><span class="hide-menu" th:text="#{menu.medical.calculations}">
                         </span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" th:href="@{/recommendations}" aria-expanded="false">
+                    <a class="sidebar-link sidebar-link" th:href="@{/client/recommendations}" aria-expanded="false">
                         <i data-feather="calendar" class="feather-icon"></i><span class="hide-menu" th:text="#{menu.recommendations}">
 
                         </span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" th:href="@{/summary}" aria-expanded="false">
+                    <a class="sidebar-link sidebar-link" th:href="@{/client/summary}" aria-expanded="false">
                         <i data-feather="message-square" class="feather-icon"></i>
                         <span class="hide-menu" th:text="#{menu.summary}"></span></a>
                 </li>
@@ -64,11 +64,11 @@
                                                                      class="feather-icon"></i><span
                         class="hide-menu" th:text="#{body.and.health}"> </span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a th:href="@{/bmi}" class="sidebar-link"><span
+                        <li class="sidebar-item"><a th:href="@{/client/bmi}" class="sidebar-link"><span
                                 class="hide-menu" th:text="#{additional.bmi}">
                                         </span></a>
                         </li>
-                        <li class="sidebar-item"><a th:href="@{/fitness}" class="sidebar-link"><span
+                        <li class="sidebar-item"><a th:href="@{/client/fitness}" class="sidebar-link"><span
                                 class="hide-menu" th:text="#{additional.fintess}">
                                         </span></a>
                         </li>
@@ -78,12 +78,12 @@
                                             aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                         class="hide-menu" th:text="#{other}"></span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a href="table-basic.html" th:href="@{/nutrition}"
+                        <li class="sidebar-item"><a href="table-basic.html" th:href="@{/client/nutrition}"
                                                     class="sidebar-link"><span
                                 class="hide-menu" th:text="#{nutrition}">
                                         </span></a>
                         </li>
-                        <li class="sidebar-item"><a href="table-dark-basic.html" th:href="@{/analyser}"
+                        <li class="sidebar-item"><a href="table-dark-basic.html" th:href="@{/client/analyser}"
                                                     class="sidebar-link"><span
                                 class="hide-menu" th:text="#{analyzer}"></span></a>
                         </li>

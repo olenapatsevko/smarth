@@ -43,13 +43,13 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h4 class="card-title" th:text="${meal.title}"/>
+                                    <h4 class="card-title" th:text="${meal.title}"></h4>
                                     <!--/*@thymesVar id="user" type="tef.smarth.api.spooncalcular.response.SpoonRecipeSummary"*/-->
                                     <div class="jumbotron" >
                                         <p th:utext="${meal.summary}"></p>
                                         <p class="lead">
                                             <a class="btn btn-primary btn-lg"
-                                               role="button" th:href="@{/personal-cabinet}"
+                                               role="button" th:href="@{/client/personal-cabinet}"
                                                th:text="#{summary.label.go.back}"></a>
                                         </p>
                                     </div>

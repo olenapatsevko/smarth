@@ -45,7 +45,7 @@
                             <h5 th:if="${saved}" class="text-success" th:text="#{saved}"></h5>
 
                             <!--/*@thymesVar id="addForm" type="tef.smarth.model.AddDataModel"*/-->
-                            <form th:object="${addForm}" th:action="@{/add-data}" method="post">
+                            <form th:object="${addForm}" th:action="@{/client/add-data}" method="post">
                                 <div th:if="${#fields.hasErrors('*')}">
                                 <div th:each="e : ${#fields.detailedErrors()}"
                                      th:class="${e.global} ? globalerr : fielderr">
