@@ -41,4 +41,10 @@ public class UnusedIngredient {
     private String unitLong;
 
     private String unitShort;
+
+    @Override
+    public String toString() {
+        return  " <a href="+image+" >"+name+"("+amount+") </a>" ;
+
+    }
 }

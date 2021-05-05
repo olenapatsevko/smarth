@@ -15,6 +15,7 @@ import tef.smarth.mapper.UserMapper;
 import tef.smarth.model.User;
 import tef.smarth.service.SecurityService;
 import tef.smarth.service.UserService;
+import tef.smarth.service.api.COVIDService;
 import tef.smarth.utils.UserValidator;
 
 
@@ -34,6 +35,9 @@ public class AccountController {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private COVIDService covidService;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -78,6 +82,9 @@ public class AccountController {
     @GetMapping("/personal-cabinet")
     public String personalCabinet(Model model) {
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("allCountries", covidService.getAllCountries());
+        model.addAttribute("ukraine", covidService.getUkraine());
+        model.addAttribute("world", covidService.getWorld());
         return "personal-cabinet";
     }
 

@@ -13,6 +13,7 @@ import tef.smarth.api.spooncalcular.response.MenuResponse;
 import tef.smarth.api.spooncalcular.response.SpoonRecipeSummary;
 import tef.smarth.model.Menu;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -61,7 +62,7 @@ public class SpoonCalcularClient {
         return response.getBody();
     }
 
-    public Object getRecipesByIngredients(IngredientsRequest request) {
+    public List<IngredientsRecipe> getRecipesByIngredients(IngredientsRequest request) {
         var restTemplate = new RestTemplate();
 
         var headers = new HttpHeaders();
@@ -77,6 +78,6 @@ public class SpoonCalcularClient {
 
         ResponseEntity<IngredientsRecipe[]> response
                 = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, requestBody, IngredientsRecipe[].class);
-        return response.getBody();
+        return List.of(response.getBody());
     }
 }

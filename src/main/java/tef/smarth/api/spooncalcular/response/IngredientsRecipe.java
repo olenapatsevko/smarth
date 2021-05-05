@@ -3,9 +3,10 @@ package tef.smarth.api.spooncalcular.response;
 
 import com.fasterxml.jackson.databind.jsonschema.JsonSerializableSchema;
 import lombok.*;
+import org.apache.tomcat.util.buf.StringUtils;
 
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 @Data
 @EqualsAndHashCode
@@ -14,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @JsonSerializableSchema
 public class IngredientsRecipe {
-
 
     private Long id;
 
@@ -35,4 +35,13 @@ public class IngredientsRecipe {
     private Long usedIngredientCount;
 
     private List<UsedIngredient> usedIngredients;
+
+    @Override
+    public String toString() {
+        return
+                "Unused Ingredients: " + StringUtils.join(unusedIngredients.stream().map(UnusedIngredient::toString).collect(Collectors.toList()), ',') + "<br/>" +
+                        "Used IngredientCount: " + usedIngredientCount + "<br/>" +
+                        "Missed Ingredients: " + missedIngredientCount + "<br/>" +
+                        "Used Ingredients: " + StringUtils.join(usedIngredients.stream().map(UsedIngredient::toString).collect(Collectors.toList()), ',') + "<br/>";
+    }
 }

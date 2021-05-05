@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import tef.smarth.api.spooncalcular.request.DietType;
-import tef.smarth.api.spooncalcular.request.IngredientsRequest;
 import tef.smarth.mapper.UserMapper;
 import tef.smarth.model.*;
 import tef.smarth.repository.UserRepository;
@@ -96,7 +98,7 @@ public class UserController {
     @PostMapping("/nutrition-recipes")
     public String getRecipeResult(Model model, @ModelAttribute("recipeForm") IngredientsForm recipeForm) {
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
-        model.addAttribute("recipes", "");
+        model.addAttribute("recipes", recipeForm != null ? spoonService.getListOfRecipes(recipeForm) : null);
         return "nutrition-recipes-result";
     }
 
