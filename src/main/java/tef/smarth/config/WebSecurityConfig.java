@@ -35,8 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/welcome").permitAll()
                 .antMatchers("/registration", "/login").permitAll()
                 .antMatchers("/api/**").permitAll()
-                .antMatchers("/**").permitAll()
-           //     .antMatchers("/client/**").hasAuthority("CLIENT")
+             //   .antMatchers("/**").permitAll()
+                .antMatchers("/client/**").hasAuthority("CLIENT")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -76,6 +76,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/fonts/**",
                         "/webjars/**",
                         "/assets/**",
+                        "/dist/css/**",
+                        "/dist/css/icon/**",
+                        "/assets/libs/jquery/dist/**",
+                        "/**/*.css",
+                        "/**/*.{js,html,css,ttf,png,jpg}",
                         "/dist/**");
     }
 }

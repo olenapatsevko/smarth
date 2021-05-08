@@ -30,7 +30,7 @@ public class RecordValidator implements Validator {
                 errors.rejectValue("date", "date.not.valid");
             }
         }
-        DoublePredicate doublePredicate = x -> x < 0. || x > 999.;
+        DoublePredicate doublePredicate = x -> x < 0. || x > 300.;
 
         checkField(doublePredicate, "hip", "validation.hip", addDataModel.getHip(), errors);
         checkField(doublePredicate, "waist", "validation.waist", addDataModel.getWaist(), errors);

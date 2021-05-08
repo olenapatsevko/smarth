@@ -65,11 +65,11 @@
                   </thead>
                   <tbody>
                   <tr th:each="meal : ${menu.meals}">
-                    <td><a th:href="'/client/meal?id='+${meal.id}" th:text="${meal.id}"></a></td>
+                    <td><a th:href="'/client/meal?id='+${meal.id}" th:target="_blank" th:text="${meal.id}"></a></td>
                     <td th:text="${meal.title}"></td>
                     <td th:text="${meal.servings}"></td>
                     <td th:text="${meal.readyInMinutes}"></td>
-                    <td><a th:href="${meal.sourceUrl}" th:text="#{resource}"></a></td>
+                    <td><a th:href="${meal.sourceUrl}" th:text="#{resource}" th:target="_blank"></a></td>
                   </tr>
                   </tbody>
                 </table>
@@ -82,24 +82,24 @@
   </div>
 </div>
 
-<script th:src="@{assets/libs/jquery/dist/jquery.min.js}"></script>
-<script th:src="@{assets/libs/popper.js/dist/umd/popper.min.js}"></script>
-<script th:src="@{assets/libs/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/assets/libs/popper.js/dist/umd/popper.min.js}"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.min.js}"></script>
 
-<script th:src="@{dist/js/app-style-switcher.js}"></script>
-<script th:src="@{dist/js/feather.min.js}"></script>
-<script th:src="@{assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
-<script th:src="@{dist/js/sidebarmenu.js}"></script>
+<script th:src="@{/dist/js/app-style-switcher.js}"></script>
+<script th:src="@{/dist/js/feather.min.js}"></script>
+<script th:src="@{/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
+<script th:src="@{/dist/js/sidebarmenu.js}"></script>
 
-<script th:src="@{dist/js/custom.min.js}"></script>
+<script th:src="@{/dist/js/custom.min.js}"></script>
 
-<script th:src="@{assets/extra-libs/c3/d3.min.js}"></script>
-<script th:src="@{assets/extra-libs/c3/c3.min.js}"></script>
-<script th:src="@{assets/libs/chartist/dist/chartist.min.js}"></script>
-<script th:src="@{assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
-<script th:src="@{assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js}"></script>
+<script th:src="@{/assets/extra-libs/c3/d3.min.js}"></script>
+<script th:src="@{/assets/extra-libs/c3/c3.min.js}"></script>
+<script th:src="@{/assets/libs/chartist/dist/chartist.min.js}"></script>
+<script th:src="@{/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
+<script th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js}"></script>
 <script th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js}"></script>
-<script th:src="@{dist/js/pages/dashboards/dashboard1.min.js}"></script>
+<script th:src="@{/dist/js/pages/dashboards/dashboard1.min.js}"></script>
 </body>
 
 </html>

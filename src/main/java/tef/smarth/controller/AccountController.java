@@ -87,6 +87,14 @@ public class AccountController {
         model.addAttribute("world", covidService.getWorld());
         return "personal-cabinet";
     }
+    @GetMapping("/client/personal-cabinet")
+    public String personalCabinet2 (Model model) {
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        model.addAttribute("allCountries", covidService.getAllCountries());
+        model.addAttribute("ukraine", covidService.getUkraine());
+        model.addAttribute("world", covidService.getWorld());
+        return "personal-cabinet";
+    }
 
 
 }
