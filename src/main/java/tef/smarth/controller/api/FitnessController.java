@@ -26,13 +26,13 @@ public class FitnessController {
                 .deficit("500")
                 .exercise(Exercise.LITTLE)
                 .gender("male")
-                .goalWeight("85.5")
+                .goalWeight("100.5")
                 .height("190.55")
                 .hip("100.5")
                 .neck("41.5")
                 .waist("88.5")
                 .goal(Goal.MAINTENANCE)
-                        .weight("80.5")
-                        .build());
+                .weight("80.5")
+                .build());
     }
 }

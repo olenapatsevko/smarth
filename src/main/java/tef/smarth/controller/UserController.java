@@ -141,7 +141,7 @@ public class UserController {
     public String getRecommendations(Model model) {
         var rand = new Random();
         model.addAttribute("user", userService.obtainCurrentPrincipleUser());
-        model.addAttribute("recommendations", recommendationService.getRecommendations(rand.nextInt(30)));
+        model.addAttribute("recommendations", recommendationService.getRecommendations(rand.nextInt(25)+5));
         return "recommendations";
     }
 

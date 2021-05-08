@@ -33,10 +33,303 @@
 <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
      data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
 
-    <div th:replace="header :: header" > </div>
-    <div th:replace="aside :: aside" > </div>
+    <div th:replace="header :: header"></div>
+    <div th:replace="aside :: aside"></div>
 
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="#{title.fitness.result}"></h4>
+                            <!--/*@thymesVar id="bmiResult" type="tef.smarth.api.bmi.response.BMIResponse"*/-->
+                            <form th:object="${fitnessResult}" th:action="@{#}" method="post">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="age" th:text="#{age}"></label>
+                                                <input type="text" id="age" readonly name="age"
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.age}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="weight" th:text="#{weight}+' '+#{kg}"></label>
+                                                <input type="text" id="weight" readonly name="weight"
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.weight}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="goalWeight" th:text="#{goalWeight}+' '+#{kg}"></label>
+                                                <input type="text" id="goalWeight" readonly name="goalWeight"
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.goalWeight}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="height" th:text="#{height}+' '+#{cm}"></label>
+                                                <input type="text" id="height" readonly name="height"
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.height}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="deficit" th:text="#{deficit}"></label>
+                                                <input type="text" id="deficit" readonly name="deficit"
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.deficit}">
+                                            </div>
+                                        </div>
 
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="#{timeBeforeGoalWeight}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.timeBeforeGoalWeight.value}+' '+${fitnessResult.timeBeforeGoalWeight.unit}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="#{bodyFatPercentage}"></h4>
+                            <!--/*@thymesVar id="bmiResult" type="tef.smarth.api.bmi.response.BMIResponse"*/-->
+                            <form th:object="${fitnessResult}" th:action="@{#}" method="post">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.bodyFatPercentage.bmi.formulaName}+' '+${fitnessResult.bodyFatPercentage.bmi.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.bodyFatPercentage.bmi.value}+' - '+${fitnessResult.bodyFatPercentage.bmi.conclusion}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.bodyFatPercentage.dod.formulaName}+' '+${fitnessResult.bodyFatPercentage.dod.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.bodyFatPercentage.dod.value}+' - '+${fitnessResult.bodyFatPercentage.dod.conclusion}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.bodyFatPercentage.ymca.formulaName}+' '+${fitnessResult.bodyFatPercentage.ymca.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.bodyFatPercentage.ymca.value}+' - '+${fitnessResult.bodyFatPercentage.ymca.conclusion}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="#{leanBodyMass}"></h4>
+                            <!--/*@thymesVar id="bmiResult" type="tef.smarth.api.bmi.response.BMIResponse"*/-->
+                            <form th:object="${fitnessResult}" th:action="@{#}" method="post">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.leanBodyMass.bmi.formulaName}+' '+${fitnessResult.leanBodyMass.bmi.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.leanBodyMass.bmi.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.leanBodyMass.dod.formulaName}+' '+${fitnessResult.leanBodyMass.dod.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.leanBodyMass.dod.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.leanBodyMass.ymca.formulaName}+' '+${fitnessResult.leanBodyMass.ymca.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.leanBodyMass.ymca.value}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="#{restingDailyEnergyExpenditure}"></h4>
+                            <!--/*@thymesVar id="bmiResult" type="tef.smarth.api.bmi.response.BMIResponse"*/-->
+                            <form th:object="${fitnessResult}" th:action="@{#}" method="post">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.restingDailyEnergyExpenditure.bmi.formulaName}+' '+${fitnessResult.restingDailyEnergyExpenditure.bmi.calories.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.restingDailyEnergyExpenditure.bmi.calories.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.restingDailyEnergyExpenditure.dod.formulaName}+' '+${fitnessResult.restingDailyEnergyExpenditure.dod.calories.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.restingDailyEnergyExpenditure.dod.calories.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.restingDailyEnergyExpenditure.ymca.formulaName}+' '+${fitnessResult.restingDailyEnergyExpenditure.ymca.calories.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.restingDailyEnergyExpenditure.ymca.calories.value}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="#{basalMetabolicRate}"></h4>
+                            <!--/*@thymesVar id="bmiResult" type="tef.smarth.api.bmi.response.BMIResponse"*/-->
+                            <form th:object="${fitnessResult}" th:action="@{#}" method="post">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.basalMetabolicRate.hb.formulaName}+' '+${fitnessResult.basalMetabolicRate.hb.calories.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.basalMetabolicRate.hb.calories.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.basalMetabolicRate.rs.formulaName}+' '+${fitnessResult.basalMetabolicRate.rs.calories.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.basalMetabolicRate.rs.calories.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.basalMetabolicRate.msj.formulaName}+' '+${fitnessResult.basalMetabolicRate.msj.calories.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.basalMetabolicRate.msj.calories.value}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="#{ideal.weight}"></h4>
+                            <!--/*@thymesVar id="bmiResult" type="tef.smarth.api.bmi.response.BMIResponse"*/-->
+                            <form th:object="${fitnessResult}" th:action="@{#}" method="post">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.idealBodyWeight.peterson.formulaName}+' '+${fitnessResult.idealBodyWeight.peterson.metric.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.idealBodyWeight.peterson.metric.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.idealBodyWeight.lorentz.formulaName}+' '+${fitnessResult.idealBodyWeight.lorentz.metric.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.idealBodyWeight.lorentz.metric.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.idealBodyWeight.hamwi.formulaName}+' '+${fitnessResult.idealBodyWeight.hamwi.metric.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.idealBodyWeight.hamwi.metric.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.idealBodyWeight.devine.formulaName}+' '+${fitnessResult.idealBodyWeight.devine.metric.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.idealBodyWeight.devine.metric.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.idealBodyWeight.robinson.formulaName}+' '+${fitnessResult.idealBodyWeight.robinson.metric.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.idealBodyWeight.robinson.metric.value}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label th:text="${fitnessResult.idealBodyWeight.miller.formulaName}+' '+${fitnessResult.idealBodyWeight.miller.metric.unit}"></label>
+                                                <input type="text" readonly
+                                                       class="form-control"
+                                                       th:value="${fitnessResult.idealBodyWeight.miller.metric.value}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
@@ -48,7 +341,7 @@
 <script th:src="@{/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
 <script th:src="@{/dist/js/sidebarmenu.js}"></script>
 
-<script th:src="@{dist/js/custom.min.js}"></script>
+<script th:src="@{/dist/js/custom.min.js}"></script>
 
 <script th:src="@{/assets/extra-libs/c3/d3.min.js}"></script>
 <script th:src="@{/assets/extra-libs/c3/c3.min.js}"></script>

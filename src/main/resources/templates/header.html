@@ -71,13 +71,12 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                        <a class="dropdown-item" th:href="@{/client/personal-cabinet}">
-                            <i data-feather="user" class="svg-icon mr-2 ml-1"
-                               th:value="#{menu.general.personal.cabinet}"> Personal Cabinet</i>
+                        <a class="dropdown-item" th:href="@{/client/personal-cabinet}" >
+                            <i data-feather="user" class="svg-icon mr-2 ml-1"></i><span th:text="#{menu.general.personal.cabinet}"></span>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/logout}">
-                            <i data-feather="power" class="svg-icon mr-2 ml-1" th:value="#{log.out}">Log out</i>
+                        <a class="dropdown-item" th:href="@{/logout}" >
+                            <i data-feather="power" class="svg-icon mr-2 ml-1" ></i><span th:text="#{log.out}"></span>
                         </a>
                     </div>
                 </li>
