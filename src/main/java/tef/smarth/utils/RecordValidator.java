@@ -67,6 +67,7 @@ public class RecordValidator implements Validator {
         checkField(doublePredicate, "erythrocytes", "validation.erythrocytes", addDataModel.getErythrocytes(), errors);
         checkField(doublePredicate, "leukocytes", "validation.leukocytes", addDataModel.getLeukocytes(), errors);
         checkField(doublePredicate, "epithelialCells", "validation.epithelialCells", addDataModel.getEpithelialCells(), errors);
+        checkField(doublePredicate, "VLDL", "validation.VLDL", addDataModel.getVLDL(), errors);
     }
 
     public void checkField(DoublePredicate predicate, String s, String s1, Double o, Errors errors) {

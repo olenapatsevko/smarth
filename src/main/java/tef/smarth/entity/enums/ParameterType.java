@@ -40,7 +40,8 @@ public enum ParameterType {
     UROBILINOGEN,
     HAEMOGLOBIN,
     ERYTHROCYTES,
-    EPITHELIAL_CELLS;
+    EPITHELIAL_CELLS,
+    VLDL;
 
     private String value;
 

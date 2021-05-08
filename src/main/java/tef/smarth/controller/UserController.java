@@ -65,9 +65,12 @@ public class UserController {
     @Autowired
     private SpoonService spoonService;
 
+    @Autowired
+    private CalculationService calculationService;
+
     @GetMapping("/analyser")
     public String getlexigram(Model model) {
-        model.addAttribute("user",  userService.obtainCurrentPrincipleUser());
+        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
         return "analyser";
     }
 
@@ -176,7 +179,9 @@ public class UserController {
 
     @GetMapping("/medical-calculations")
     public String getCalculations(Model model) {
-        model.addAttribute("user", userService.obtainCurrentPrincipleUser());
+        var userEntity = userService.obtainCurrentPrincipleUser();
+        model.addAttribute("user", userEntity);
+        model.addAttribute("calculations", calculationService.getMedicalCalculations(userEntity));
         return "medical-calculations";
     }
 

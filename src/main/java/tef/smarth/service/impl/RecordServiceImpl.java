@@ -6,7 +6,9 @@ import tef.smarth.entity.RecordEntity;
 import tef.smarth.entity.UserEntity;
 import tef.smarth.entity.enums.ParameterType;
 import tef.smarth.entity.enums.RecordType;
+import tef.smarth.mapper.RecordMapper;
 import tef.smarth.model.AddDataModel;
+import tef.smarth.model.Record;
 import tef.smarth.repository.RecordRepository;
 import tef.smarth.service.RecordService;
 import tef.smarth.service.UserService;
@@ -24,6 +26,9 @@ public class RecordServiceImpl implements RecordService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RecordMapper recordMapper;
 
     @Override
     public void saveRecords(AddDataModel addDataModel) {
@@ -47,7 +52,7 @@ public class RecordServiceImpl implements RecordService {
         saveDouble(addDataModel.getLDH(), ParameterType.LDH, "LDH", addDataModel.getDate());
         saveDouble(addDataModel.getCRP(), ParameterType.CRP, "CRP", addDataModel.getDate());
         saveDouble(addDataModel.getAlkalinePhosphatase(), ParameterType.ALKALINE_PHOSPHATASE, "alkalinePhosphatase,", addDataModel.getDate());
-        saveDouble(addDataModel.getALT(), ParameterType.AST, "ALT", addDataModel.getDate());
+        saveDouble(addDataModel.getALT(), ParameterType.ALT, "ALT", addDataModel.getDate());
         saveDouble(addDataModel.getAST(), ParameterType.AST, "AST", addDataModel.getDate());
         saveDouble(addDataModel.getAmylase(), ParameterType.AMYLASE, "amylase", addDataModel.getDate());
         saveDouble(addDataModel.getAlbumin(), ParameterType.ALBUMIN, "albumin", addDataModel.getDate());
@@ -62,6 +67,7 @@ public class RecordServiceImpl implements RecordService {
         saveDouble(addDataModel.getErythrocytes(), ParameterType.ERYTHROCYTES, "erythrocytes", addDataModel.getDate());
         saveDouble(addDataModel.getLeukocytes(), ParameterType.LEUKOCYTES, "leukocytes", addDataModel.getDate());
         saveDouble(addDataModel.getEpithelialCells(), ParameterType.EPITHELIAL_CELLS, "epithelialCells", addDataModel.getDate());
+        saveDouble(addDataModel.getVLDL(), ParameterType.VLDL, "VLDL", addDataModel.getDate());
     }
 
     void saveDouble(Double value, ParameterType parameterType, String name, Date date) {
@@ -99,6 +105,11 @@ public class RecordServiceImpl implements RecordService {
     public String getBMIWeight(UserEntity userEntity) {
         var recordEntity = recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(ParameterType.WEIGHT, userEntity);
         return recordEntity != null ? recordEntity.getValue() : valueOf(userEntity.getWeight());
+    }
+
+    @Override
+    public Record getLatestRecord(ParameterType parameterType, UserEntity userEntity){
+      return recordMapper.convertToModel(recordRepository.findTopByParameterTypeAndUserOrderByDateDesc(parameterType, userEntity));
     }
 
 }

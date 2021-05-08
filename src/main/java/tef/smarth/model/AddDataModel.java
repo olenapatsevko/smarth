@@ -49,5 +49,6 @@ public class AddDataModel {
  private Double erythrocytes;
  private Double leukocytes;
  private Double epithelialCells;
+ private Double VLDL;
 
 }

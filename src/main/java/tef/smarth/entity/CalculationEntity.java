@@ -2,6 +2,7 @@ package tef.smarth.entity;
 
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 import tef.smarth.entity.enums.CalculationType;
 import tef.smarth.entity.enums.Measurements;
 
