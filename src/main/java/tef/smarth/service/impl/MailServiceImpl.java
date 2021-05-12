@@ -62,7 +62,7 @@ public class MailServiceImpl implements MailService {
         records.forEach(userRecord -> result.append(MessageFormat.format("\n {0} {1} {2} {3}",
                 userRecord.getName(),
                 userRecord.getValue(),
-                userRecord.getMeasurement(),
+                userRecord.getMeasurement()==null? "": userRecord.getMeasurement().getValue(),
                 userRecord.getDate().toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE))));
         return result.toString();
     }

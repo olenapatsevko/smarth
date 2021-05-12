@@ -1,7 +1,7 @@
 package tef.smarth.entity.enums;
 
 public enum ParameterType {
-    MASS_INDEX,
+    MASS_INDEX("Body mass index"),
     LEUKOCYTES(),
     HEMOGLOBIN(),
     HEMOPROTEIN(),
@@ -44,6 +44,10 @@ public enum ParameterType {
     VLDL;
 
     private String value;
+
+    public String getValue() {
+        return value;
+    }
 
     ParameterType(String value) {
         this.value = value;

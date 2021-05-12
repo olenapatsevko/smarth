@@ -2,6 +2,7 @@ package tef.smarth.entity;
 
 
 import lombok.*;
+import tef.smarth.entity.enums.Measurements;
 import tef.smarth.entity.enums.ParameterType;
 import tef.smarth.entity.enums.RecordType;
 
@@ -41,7 +42,8 @@ public class RecordEntity {
     private ParameterType parameterType;
 
     @Column(name = "measurement")
-    private String measurement;
+    @Enumerated(EnumType.STRING)
+    private Measurements measurement;
 
     @Column(name = "date")
     private Date date;

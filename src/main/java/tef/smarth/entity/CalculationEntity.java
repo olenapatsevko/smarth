@@ -38,6 +38,7 @@ public class CalculationEntity {
     private double value;
 
     @Column(name = "measurement")
+    @Enumerated(EnumType.STRING)
     private Measurements measurement;
 
     @Column(name = "meaning")

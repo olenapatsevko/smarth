@@ -12,6 +12,7 @@ import tef.smarth.api.bmi.request.BMIRequest;
 import tef.smarth.api.bmi.response.BMIResponse;
 import tef.smarth.entity.RecordEntity;
 import tef.smarth.entity.UserEntity;
+import tef.smarth.entity.enums.Measurements;
 import tef.smarth.entity.enums.ParameterType;
 import tef.smarth.entity.enums.RecordType;
 import tef.smarth.repository.RecordRepository;
@@ -46,8 +47,10 @@ public class BMIClient {
     private BMIResponse getResponse(UserEntity userEntity, ResponseEntity<BMIResponse> response) {
         BMIResponse bmiResponse = response.getBody();
         recordRepository.save(RecordEntity.builder()
+                .name(ParameterType.MASS_INDEX.getValue())
                 .date(new Date(System.currentTimeMillis()))
                 .recordType(RecordType.DOUBLE)
+                .measurement(Measurements.NONE)
                 .parameterType(ParameterType.MASS_INDEX)
                 .user(userEntity)
                 .value(bmiResponse != null ? bmiResponse.getBmi().value : null)
