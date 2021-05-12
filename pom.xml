@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>tef</groupId>
 	<artifactId>smarth</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>smarth</name>
 	<description>Smarth project</description>
 	<properties>

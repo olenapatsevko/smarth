@@ -26,7 +26,7 @@ public class BMIController {
     @Autowired
     private BMIService bmiService;
 
-    @PostMapping(value = "/bmi", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
     public BMIResponse postBMI(@RequestBody MailRequest mailRequest) {
         var userEntity = userRepository.findByEmail(mailRequest.getEmail());
         return bmiService.getBMI(userEntity);
