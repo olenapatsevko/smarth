@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerUser(UserEntity userEntity) {
         userEntity.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword()));
+        userEntity.setPasswordConfirm(bCryptPasswordEncoder.encode(userEntity.getPasswordConfirm()));
         userRepository.save(userEntity);
     }
 
@@ -80,6 +81,7 @@ public class UserServiceImpl implements UserService {
         }
         if (!userEntity.getPassword().isBlank() && !bCryptPasswordEncoder.encode(userEntity.getPassword()).equals(currentUser.getPassword())){
             currentUser.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword()));
+            currentUser.setPasswordConfirm(bCryptPasswordEncoder.encode(userEntity.getPassword()));
         }
         if (!userEntity.getBirthday().equals(currentUser.getBirthday())){
             currentUser.setBirthday(userEntity.getBirthday());

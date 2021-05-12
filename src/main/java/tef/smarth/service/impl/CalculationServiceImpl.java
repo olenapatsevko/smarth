@@ -39,12 +39,16 @@ public class CalculationServiceImpl implements CalculationService {
     @Override
     public List<Calculation> getMedicalCalculations(UserEntity userEntity) {
         List<Calculation> calculations = new ArrayList<>();
+        try {
         calculations.add(calculationsMapper.convertToModel(caluclateRitis(recordService.getLatestRecord(ParameterType.AST, userEntity), recordService.getLatestRecord(ParameterType.ALT, userEntity), userEntity)));
         calculations.add(calculationsMapper.convertToModel(caluclateLDGtoAST(recordService.getLatestRecord(ParameterType.LDH, userEntity), recordService.getLatestRecord(ParameterType.AST, userEntity), userEntity)));
         calculations.add(calculationsMapper.convertToModel(calculateSchmidt(recordService.getLatestRecord(ParameterType.AST, userEntity), recordService.getLatestRecord(ParameterType.ALT, userEntity), recordService.getLatestRecord(ParameterType.GDH, userEntity), userEntity)));
         calculations.add(calculationsMapper.convertToModel(caluclateGGTPtoAST(recordService.getLatestRecord(ParameterType.GGT, userEntity), recordService.getLatestRecord(ParameterType.AST, userEntity), userEntity)));
         calculations.add(calculationsMapper.convertToModel(calculateKA(recordService.getLatestRecord(ParameterType.LDL, userEntity), recordService.getLatestRecord(ParameterType.HDL, userEntity), recordService.getLatestRecord(ParameterType.VLDL, userEntity), userEntity)));
         return calculations;
+    }catch (Exception e){
+            return calculations;
+        }
     }
 
 

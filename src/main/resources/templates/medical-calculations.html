@@ -41,11 +41,12 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title" th:text="#{menu.medical.calculations}"></h4>
+              <h4 class="card-title" th:text="#{menu.medical.calculations}" ></h4>
               <!--/*@thymesVar id="bmiResult" type="tef.smarth.api.bmi.response.BMIResponse"*/-->
-              <form th:object="${calculations}" th:action="@{#}" method="post">
+              <h3 th:text="#{no.data}" th:if="${calculations.isEmpty()}"></h3>
+              <form th:object="${calculations}" th:action="@{#}" method="post" th:if="${calculations!=null}">
                 <div class="form-body">
-                  <div class="row">
+                  <div class="row" >
                     <div class="col-md-12" th:each="calculation: ${calculations}">
                       <div class="form-group">
                         <label th:text="${calculation.name.name+'- '+calculation.meaning}"></label>

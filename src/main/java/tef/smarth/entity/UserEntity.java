@@ -94,7 +94,9 @@ public class UserEntity {
 
     @PrePersist
     void preInsert() {
-
+        if (roles == null) {
+            roles = new HashSet<>();
+        }
         if (this.roles.isEmpty()) {
             RoleEntity role = new RoleEntity();
             role.setId(1);

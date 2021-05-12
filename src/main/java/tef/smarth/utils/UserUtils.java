@@ -2,7 +2,10 @@ package tef.smarth.utils;
 
 import tef.smarth.dto.RegistrationRequest;
 import tef.smarth.entity.UserEntity;
+import tef.smarth.entity.enums.BloodGroup;
 import tef.smarth.entity.enums.Sex;
+
+import java.util.Set;
 
 public class UserUtils {
     private UserUtils(){}
@@ -17,6 +20,7 @@ public class UserUtils {
                 .username(request.getUsername())
                 .sex(Sex.MALE)
                 .password(request.getPassword())
+                .passwordConfirm(request.getPassword())
                 .height(request.getHeight())
                 .weight(request.getWeight())
                 .hip(request.getHip())
