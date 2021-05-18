@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BodyFatPercentage{
+
     public Bmi bmi;
     public Dod dod;
     public Ymca ymca;
